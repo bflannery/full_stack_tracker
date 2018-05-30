@@ -27,6 +27,7 @@ exports.devServer = ({ host, port } = {}) => ({
     host, // Defaults to `localhost`
     port, // Defaults to 8080
     open: true, // Open the page in browser
+    historyApiFallback: true,
     overlay: true,
     proxy: {
       '/api': 'http://localhost:8000',

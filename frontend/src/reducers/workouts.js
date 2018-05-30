@@ -1,23 +1,13 @@
 import * as workouts from '../actions/workouts'
 
-const INITIAL_WORKOUT_STATE = {
-    owner: '',
-    type: '',
-    intensity: '',
-    duration: '',
-    caloriesBurned: '',
-}
 
-export default (state=INITIAL_WORKOUT_STATE, action) => {
+export default (state=[], action) => {
     switch(action.type) {
-        case workouts.WORKOUTS_SUCCESS:
-            return {
-                ...state,
-                ...action.payload
-            }
+        case workouts.WORKOUTS_GET_SUCCESS:
+            return action.payload
         default:
             return state
     } 
 }
 
-export const workout = (state) => state
+export const workoutsArray = (state) => state

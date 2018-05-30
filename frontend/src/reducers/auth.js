@@ -7,6 +7,8 @@ const INITIAL_STATE = {
     errors: {},
 }
 
+
+
 // Reducers
 
 export default (state=INITIAL_STATE, action) => {
@@ -40,6 +42,8 @@ export default (state=INITIAL_STATE, action) => {
                     { 'non_field_errors': action.payload.statusText},
 
             }
+      case auth.LOGOUT:
+          return INITIAL_STATE
         default:
             return state
     }
@@ -81,5 +85,4 @@ export function isAuthenticated(state) {
 export function errors(state) {
     return  state.errors
 }
-
 

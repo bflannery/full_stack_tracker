@@ -1,32 +1,27 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { postWorkoutsAPI } from './actions/workouts'
-import { serverWorkout } from './reducers/index'
+import NavBar from './components/NavBar'
+import { Route, Switch } from 'react-router-dom'
+import Home from './containers/HomePageContainer';
+import Users from './containers/UsersPageContainer';
+import Workouts from './containers/WorkoutsPageContainer';
+import Login from './containers/LoginContainer';
+import PrivateRoute from './containers/PrivateRouteContainer';
 
 
 class App extends Component {
-    componentDidMount() {
-        this.props.postWorkout({
-            type: 3,
-            intensity: 1,
-            duration: 6200,
-            calories_burned: 500
-        })
-    }
   render() {
     return (
-      <div className="App">
-          <h3> Workout </h3>
-          <p> {this.props.workout.type} </p>
-          <p> {this.props.workout.intensity} </p>
-          <p> {this.props.workout.duration} </p>
-          <p> {this.props.workout.calories_burned} </p>
+      <div className='container'>
+        <NavBar />
+        <Switch>
+          <Route exact path='/login' component={Login} />
+          <PrivateRoute exact path='/' component={Home} />
+          <PrivateRoute exact path='/users' component={Users} />
+          <PrivateRoute exact path='/workouts' component={Workouts} />
+        </Switch>
       </div>
-    );
+    )
   }
 }
 
-export default connect(
-    state => ({workout: serverWorkout(state)}),
-    { postWorkout: postWorkoutsAPI }
-)(App);
+export default App;
