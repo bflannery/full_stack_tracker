@@ -3,21 +3,12 @@ from rest_framework import serializers
 from .models import Workout
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    workouts = serializers.HyperlinkedRelatedField(many=True,
-                                                   view_name='workout-detail', read_only=True)
-
-    class Meta:
-        model = User
-        fields = ('url', 'id', 'username', 'workouts')
-
-
-class WorkoutSerializer(serializers.HyperlinkedModelSerializer):
+class WorkoutSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Workout
-        fields = ('url', 'id', 'owner',
+        fields = ('id', 'owner',
                   'type', 'intensity', 'duration', 'calories_burned',)
 
     def create(self, validated_data):
@@ -40,3 +31,11 @@ class WorkoutSerializer(serializers.HyperlinkedModelSerializer):
         instance.calories_burned = validated_data.get('calories_burned', instance.calories_burned)
         instance.save()
         return instance
+
+
+class UserSerializer(serializers.ModelSerializer):
+    workouts = WorkoutSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'workouts')
