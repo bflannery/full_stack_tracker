@@ -1,12 +1,16 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-import auth, * as fromAuth from './auth'
-import workout, * as fromWorkouts from './workouts'
+import authReducer, * as fromAuth from './auth'
+import workoutReducer, * as fromWorkouts from './workouts'
+import schemaReducer, * as fromSchema from './schema'
+import usersReducer, * as fromUsers from './users'
 
 export default combineReducers({
-    auth: auth,
-    workout: workout,
-    router: routerReducer
+    auth: authReducer,
+    users: usersReducer,
+    workout: workoutReducer,
+    router: routerReducer,
+    schema: schemaReducer,
 })
 
 export const isAuthenticated = state => fromAuth.isAuthenticated(state.auth)
