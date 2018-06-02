@@ -9,11 +9,11 @@ export const USERS_GET_REQUEST = '@@workout/USERS_GET_REQUEST';
 export const USERS_GET_SUCCESS = '@@workout/USERS_GET_SUCCESS';
 export const USERS_GET_FAILURE = '@@workout/USERS_GET_FAILURE';
 
-export const apiPostUsers = (workout) => ({
+export const apiPostUsers = (firstName, lastName, email, username, password) => ({
   [RSAA]: {
     endpoint: '/api/fitness/users/',
     method: 'POST',
-    body: JSON.stringify(workout),
+    body: JSON.stringify({firstName, lastName, email, username, password}),
     headers: withAuth({ 'Content-Type': 'application/json' }),
     types: [
       USERS_POST_REQUEST, USERS_POST_SUCCESS, USERS_POST_FAILURE

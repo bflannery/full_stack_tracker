@@ -5,45 +5,32 @@ from rest_framework.decorators import action
 from rest_framework import renderers
 from rest_framework import viewsets
 from .models import Workout
-from .serializers import WorkoutSerializer, UserSerializer
+from .serializers import WorkoutSerializer, UserSerializer, RegistrationSerializer
 from .permissions import IsOwnerOrReadOnly
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from pprint import pprint
 
-# Create your views here.
 
-
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
     This viewset automatically provides 'list' and 'detail' actions.
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+
+class RegistrationView(generics.CreateAPIView):
+    # Allow any user (authenticated or not) to hit this endpoint.
+    permission_classes = (permissions.AllowAny,)
+    serializer_class = RegistrationSerializer
+
     def perform_create(self, serializer):
-        # use User.objects.create_user to create user
-        pass
+        serializer.save()
 
 
-class WorkoutViewSet(viewsets.ModelViewSet):
-    """
-    This viewset automatically provides `list`, `create`, `retrieve`,
-    `update`, and `destroy` actions.
-
-    Additionally we also provide an extra `highlight` action.
-    """
-    queryset = Workout.objects.all()
-    serializer_class = WorkoutSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-                          IsOwnerOrReadOnly,)
-
-    @action(detail=True, renderer_classes=[renderers.StaticHTMLRenderer])
-    # def highlight(self, request, *args, **kwargs):
-    #     snippet = self.get_object()
-    #     return Response(snippet.highlighted)
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
-
-
-class WorkoutList(generics.ListCreateAPIView):
+class WorkoutListCreateView(generics.ListCreateAPIView):
     """
     List all workouts, or create a new workout.
     """
@@ -55,7 +42,7 @@ class WorkoutList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
 
-class WorkoutDetail(generics.RetrieveUpdateDestroyAPIView):
+class WorkoutDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
     Retrieve, update or delete a workout.
     """

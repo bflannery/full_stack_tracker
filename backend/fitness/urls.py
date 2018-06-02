@@ -5,11 +5,12 @@ from . import views
 
 # Create a router and register our viewset with it.
 router = DefaultRouter()
-router.register(r'workouts', views.WorkoutViewSet)
 router.register(r'users', views.UserViewSet)
-router.register(r'signup', views.UserViewSet)
 
 # The API URLs are now determined automatically by  the router.
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('workouts/', views.WorkoutListCreateView.as_view(), name="workouts"),
+    path('workouts/<int:pk>/', views.WorkoutDetailView.as_view(), name="workouts-detail"),
+    path('register/', views.RegistrationView.as_view(), name="register"),
 ]

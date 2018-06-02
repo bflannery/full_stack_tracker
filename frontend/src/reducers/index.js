@@ -20,6 +20,8 @@ export const refreshToken = state => fromAuth.refreshToken(state.auth)
 export const isRefreshTokenExpired = state => fromAuth.isRefreshTokenExpired(state.auth)
 export const authErrors = state => fromAuth.errors(state.auth)
 export const serverWorkout = state => fromWorkouts.workout(state.workout)
+export const usersApiErrors = state => usersReducer.errors(state.users)
+export const getUsers = state => usersReducer.users(state.users)
 
 export const withAuth = (headers = {}) => (state) => ({
     ...headers,
