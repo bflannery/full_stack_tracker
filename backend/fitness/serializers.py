@@ -38,4 +38,12 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'workouts')
+        fields = ('id', 'username', 'first_name', 'last_name',
+                  'email', 'is_staff', 'last_login', 'date_joined', 'workouts')
+
+        def create(self, validated_data):
+            """
+            :param validated_data:
+            :return: Create and return a new 'Workout' instance, given the validated data.
+            """
+            return Users.objects.create(**validated_data)

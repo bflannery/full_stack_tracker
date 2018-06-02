@@ -11,12 +11,16 @@ from .permissions import IsOwnerOrReadOnly
 # Create your views here.
 
 
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides 'list' and 'detail' actions.
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    def perform_create(self, serializer):
+        # use User.objects.create_user to create user
+        pass
 
 
 class WorkoutViewSet(viewsets.ModelViewSet):
