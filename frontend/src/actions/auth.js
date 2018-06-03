@@ -10,7 +10,7 @@ export const TOKEN_FAILURE = '@@auth/TOKEN_FAILURE';
 export const LOGOUT = '@@auth/LOGOUT'
 
 
-export const login = (username, password) => ({
+export const authenticate = (username, password) => ({
     [RSAA]: {
         endpoint: '/api/auth/token/obtain/',
         method: 'POST',

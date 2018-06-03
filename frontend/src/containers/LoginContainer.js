@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 
 import LoginForm from '../components/LoginForm'
-import { login } from '../actions/auth'
+import { authenticate } from '../actions/auth'
 import { authErrors, isAuthenticated } from '../reducers'
 
 const LoginContainer = props => (
@@ -23,7 +23,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     onSubmit: (username, password) => {
-        dispatch(login(username, password))
+        dispatch(authenticate(username, password))
     }
 })
 

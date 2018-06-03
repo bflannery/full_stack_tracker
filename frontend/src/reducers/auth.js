@@ -5,16 +5,17 @@ const INITIAL_STATE = {
     access: undefined,
     refresh: undefined,
     errors: {},
+    lastUserCreated: ''
 }
 
-
-
+export const isUserRegistered = (state) => {}
 // Reducers
 
 export default (state=INITIAL_STATE, action) => {
     switch(action.type) {
-        case auth.LOGIN_SUCCESS:
+      case auth.LOGIN_SUCCESS:
             return {
+                ...state,
                 access: {
                     token: action.payload.access,
                     ...jwtDecode(action.payload.access)
@@ -23,7 +24,6 @@ export default (state=INITIAL_STATE, action) => {
                     token: action.payload.refresh,
                     ...jwtDecode(action.payload.refresh)
                 },
-                error: {}
             }
         case auth.TOKEN_RECEIVED:
             return {
@@ -31,7 +31,8 @@ export default (state=INITIAL_STATE, action) => {
                 access: {
                     token: action.payload.access,
                     ...jwtDecode(action.payload.access)
-                }
+                },
+                isRegistered: true,
             }
         case auth.LOGIN_FAILURE:
         case auth.TOKEN_FAILURE:

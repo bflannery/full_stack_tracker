@@ -14,10 +14,6 @@ class HomePageContainer extends Component {
     return (
       <div className="workout">
         <h3> Home Page </h3>
-        {/*<ul>*/}
-          {/*this.props.users.map(user => (*/}
-          {/*<li>users</li>*/}
-        {/*</ul>*/}
       </div>
     );
   }

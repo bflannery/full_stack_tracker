@@ -12,5 +12,4 @@ urlpatterns = [
     path('', include(router.urls)),
     path('workouts/', views.WorkoutListCreateView.as_view(), name="workouts"),
     path('workouts/<int:pk>/', views.WorkoutDetailView.as_view(), name="workouts-detail"),
-    path('register/', views.RegistrationView.as_view(), name="register"),
 ]

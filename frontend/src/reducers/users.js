@@ -5,6 +5,7 @@ import * as schema from './schema'
 const INITIAL_STATE = {
   users: [],
   apiError: {},
+  lastUserCreated: ''
 }
 export default (state=INITIAL_STATE, action) => {
   switch(action.type) {
@@ -14,6 +15,13 @@ export default (state=INITIAL_STATE, action) => {
         ...state,
         users: normalizedData.entities.users
       }
+    case users.USERS_POST_SUCCESS: {
+      return {
+        ...state,
+        lastUserCreated: action.payload.email
+      }
+      return state
+    }
     case users.USERS_POST_FAILURE:
     case users.USERS_GET_FAILURE:
       return {
@@ -27,3 +35,4 @@ export default (state=INITIAL_STATE, action) => {
 
 export const usersArray = (state) => state.users
 export const usersApiError = (state) => state.apiError
+export const lastUserCreated = (state) => state.lastUserCreated

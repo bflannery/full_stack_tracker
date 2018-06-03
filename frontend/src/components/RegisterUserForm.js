@@ -2,14 +2,17 @@ import React, { Component } from 'react'
 import { Alert, Button, Jumbotron, Form } from 'reactstrap'
 import TextInput from './TextInput'
 
+
+const DEFAULT_STATE = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  username: '',
+  password: ''
+}
+
 export default class RegisterUserForm extends Component {
-  state = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    username: '',
-    password: ''
-  }
+  state = DEFAULT_STATE
 
   handleInputChange = event => {
     const target = event.target
@@ -30,6 +33,7 @@ export default class RegisterUserForm extends Component {
       this.state.username,
       this.state.password,
     )
+    this.state = DEFAULT_STATE
   }
 
   render() {
