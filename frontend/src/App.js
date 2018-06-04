@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from './components/NavBar'
-import { Route, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import Home from './containers/HomePageContainer';
 import Users from './containers/UsersPageContainer';
 import Workouts from './containers/WorkoutsPageContainer';
@@ -14,13 +14,13 @@ class App extends Component {
     return (
       <div className='container'>
         <NavBar />
-        <Switch>
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/register' component={RegisterContainer} />
+        <div>
+          <Route path='/login' component={Login} />
+          <Route path='/register' component={RegisterContainer} />
           <PrivateRoute exact path='/' component={Home} />
-          <PrivateRoute exact path='/users' component={Users} />
-          <PrivateRoute exact path='/workouts' component={Workouts} />
-        </Switch>
+          <PrivateRoute path='/users' component={Users} />
+          <PrivateRoute path='/workouts' component={Workouts} />
+        </div>
       </div>
     )
   }

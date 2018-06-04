@@ -20,7 +20,6 @@ export default (state=INITIAL_STATE, action) => {
         ...state,
         lastUserCreated: action.payload.email
       }
-      return state
     }
     case users.USERS_POST_FAILURE:
     case users.USERS_GET_FAILURE:

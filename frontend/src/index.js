@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import createHistory from 'history/createBrowserHistory';
 import { Provider } from 'react-redux'
-import { Router } from 'react-router'
-
+import { ConnectedRouter } from 'react-router-redux'
 import './assets/css/index.css';
 import 'bootstrap/dist/css/bootstrap.css'
 
@@ -16,9 +15,9 @@ const store = configureStore(history)
 
 ReactDOM.render((
   <Provider store={store}>
-      <Router history ={history}>
+      <ConnectedRouter history={history}>
         <App />
-      </Router>
+      </ConnectedRouter>
   </Provider>),
   document.getElementById('root')
 );

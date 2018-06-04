@@ -16,13 +16,10 @@ const LoginContainer = props => (
         )
 )
 
-const mapStateToProps = state => {
-  console.log(state)
-  return {
+const mapStateToProps = state => ({
     errors: authErrors(state),
     isAuthenticated: isAuthenticated(state),
-  }
-}
+})
 
 const mapDispatchToProps = dispatch => ({
     onSubmit: (username, password) => {

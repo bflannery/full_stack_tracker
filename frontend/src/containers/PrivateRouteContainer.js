@@ -9,13 +9,10 @@ const PrivateRouteContainer = ({
     ...rest
 }) => (
     <Route {...rest} render={props => (
-      isAuthenticated
+      props.isAuthenticated
         ? <Component {...props} />
         : (
-          <Redirect to={{
-            pathname: '/login',
-            state: { from: props.location }
-          }}
+          <Redirect to={'/login'}
           />
         ))
       }
