@@ -1,5 +1,12 @@
 import jwtDecode from 'jwt-decode'
 import * as auth from '../actions/auth'
+import * as users from '../actions/users'
+import { combineEpics } from 'redux-observable'
+import 'rxjs/add/operator/mapTo'
+import 'rxjs/add/operator/filter'
+import 'rxjs/add/operator/do'
+import { push } from 'react-router-redux'
+
 
 const INITIAL_STATE = {
     access: undefined,
@@ -86,4 +93,14 @@ export function isAuthenticated(state) {
 export function errors(state) {
     return  state.errors
 }
+
+
+export const registerEpic = (action$, store) =>
+  action$.ofType(users.USERS_POST_SUCCESS)
+  .mapTo(push('/login'))
+
+export const epic = combineEpics(
+    registerEpic
+)
+
 

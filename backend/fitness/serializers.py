@@ -65,5 +65,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
                   'last_login', 'date_joined', 'token')
 
     def create(self, validated_data):
-        # Use the `create_user` method we wrote earlier to create a new user.
-        return User.objects.create(**validated_data)
+        user = User(email=validated_data['email'], username=validated_data['username'])
+        user.set_password(validated_data['password'])
+        user.save()
+        return user

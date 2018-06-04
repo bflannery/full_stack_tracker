@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router'
+import { Redirect, withRouter } from 'react-router-dom'
 
 import LoginForm from '../components/LoginForm'
 import { authenticate } from '../actions/auth'
@@ -16,10 +16,13 @@ const LoginContainer = props => (
         )
 )
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => {
+  console.log(state)
+  return {
     errors: authErrors(state),
-    isAuthenticated: isAuthenticated(state)
-})
+    isAuthenticated: isAuthenticated(state),
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
     onSubmit: (username, password) => {
@@ -27,4 +30,4 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginContainer));

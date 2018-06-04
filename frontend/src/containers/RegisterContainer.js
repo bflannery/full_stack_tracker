@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import RegisterUserForm from '../components/RegisterUserForm'
 import {  apiRegisterUser } from '../actions/users'
@@ -21,4 +22,4 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterPageContainer);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RegisterPageContainer));

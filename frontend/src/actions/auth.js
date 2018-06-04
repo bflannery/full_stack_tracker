@@ -10,15 +10,18 @@ export const TOKEN_FAILURE = '@@auth/TOKEN_FAILURE';
 export const LOGOUT = '@@auth/LOGOUT'
 
 
-export const authenticate = (username, password) => ({
+export const authenticate = (username, password) => {
+    console.log({username, password})
+    return {
     [RSAA]: {
-        endpoint: '/api/auth/token/obtain/',
-        method: 'POST',
-        body: JSON.stringify({username, password}),
-        headers: { 'Content-Type': 'application/json' },
-        types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE]
-    }
-})
+    endpoint: '/api/auth/token/obtain/',
+      method: 'POST',
+      body: JSON.stringify({username, password}),
+      headers: { 'Content-Type': 'application/json' },
+    types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE]
+  }
+  }
+}
 
 export const refreshAccessToken = (token) => ({
     [RSAA]: {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+
 import { apiGetUsers } from '../actions/users'
 import { usersArray } from '../reducers/users'
 import { apiGetWorkouts} from '../actions/workouts'
@@ -27,7 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
   getUsers: () => dispatch(apiGetUsers()),
   getWorkouts: () => dispatch(apiGetWorkouts())
 })
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(HomePageContainer);
+)(HomePageContainer));

@@ -30,7 +30,7 @@ export default class LoginForm extends Component {
         return (
             <Jumbotron className="container">
                 <Form onSubmit={this.onSubmit}>
-                    <h1> Authentication </h1>
+                    <h1> Log In </h1>
                     {errors.non_field_errors && (
                         <Alert color="danger">
                             {errors.non_field_errors}

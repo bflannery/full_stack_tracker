@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { combineEpics } from 'redux-observable'
 import { routerReducer } from 'react-router-redux'
 import authReducer, * as fromAuth from './auth'
 import workoutReducer, * as fromWorkouts from './workouts'
@@ -28,3 +29,6 @@ export const withAuth = (headers = {}) => (state) => ({
     'Authorization': `Bearer ${accessToken(state)}`
 })
 
+export const rootEpic = combineEpics(
+    fromAuth.epic,
+)
