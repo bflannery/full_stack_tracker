@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-import { combineEpics } from 'redux-observable'
 import { routerReducer } from 'react-router-redux'
 import authReducer, * as fromAuth from './auth'
 import workoutReducer, * as fromWorkouts from './workouts'
@@ -9,26 +8,31 @@ import usersReducer, * as fromUsers from './users'
 export default combineReducers({
     auth: authReducer,
     users: usersReducer,
-    workout: workoutReducer,
-    router: routerReducer,
+    workouts: workoutReducer,
     schema: schemaReducer,
+    router: routerReducer,
 })
 
-export const isAuthenticated = state => fromAuth.isAuthenticated(state.auth)
-export const accessToken = state => fromAuth.accessToken(state.auth)
-export const isAccessTokenExpired = state => fromAuth.isAccessTokenExpired(state.auth)
-export const refreshToken = state => fromAuth.refreshToken(state.auth)
-export const isRefreshTokenExpired = state => fromAuth.isRefreshTokenExpired(state.auth)
-export const authErrors = state => fromAuth.errors(state.auth)
-export const serverWorkout = state => fromWorkouts.workout(state.workout)
-export const usersApiErrors = state => usersReducer.errors(state.users)
-export const getUsers = state => usersReducer.users(state.users)
+// From Auth
+export const isAuthenticated = state => fromAuth.isAuthenticated(state)
+export const accessToken = state => fromAuth.accessToken(state)
+export const isAccessTokenExpired = state => fromAuth.isAccessTokenExpired(state)
+export const refreshToken = state => fromAuth.refreshToken(state)
+export const isRefreshTokenExpired = state => fromAuth.isRefreshTokenExpired(state)
+export const authAPIErrors = state => fromAuth.authAPIErrors(state)
+
+// From Workouts
+export const getWorkoutAPIError = state => fromWorkouts.getWorkoutAPIError(state)
+
+// From Users
+export const getUsersAPIErrors = state => fromUsers.getUsersAPIErrors(state)
+export const lastUserCreated = state => fromUsers.lastUserCreated(state)
+
+// From Schema
+export const getWorkoutsSchema = state => fromSchema.getWorkoutsSchema(state)
+export const getUsersSchema = state => fromSchema.getUsersSchema(state)
 
 export const withAuth = (headers = {}) => (state) => ({
     ...headers,
     'Authorization': `Bearer ${accessToken(state)}`
 })
-
-export const rootEpic = combineEpics(
-    fromAuth.epic,
-)

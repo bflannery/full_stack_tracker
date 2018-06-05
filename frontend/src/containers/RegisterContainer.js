@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 import RegisterUserForm from '../components/RegisterUserForm'
 import {  apiRegisterUser } from '../actions/users'
-import { authErrors } from '../reducers'
+import { authAPIErrors } from '../reducers'
 
 const RegisterPageContainer = (props) => (
     <div className='register-page'>
@@ -13,7 +13,7 @@ const RegisterPageContainer = (props) => (
 )
 
 const mapStateToProps = state => ({
-  errors: authErrors(state),
+  errors: authAPIErrors(state),
 })
 
 const mapDispatchToProps = dispatch => ({

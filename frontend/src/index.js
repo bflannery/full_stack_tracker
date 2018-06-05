@@ -13,12 +13,12 @@ import registerServiceWorker from './helpers/registerServiceWorker';
 const history = createHistory()
 const store = configureStore(history)
 
-ReactDOM.render((
+ReactDOM.render(
   <Provider store={store}>
       <ConnectedRouter history={history}>
         <App />
       </ConnectedRouter>
-  </Provider>),
+  </Provider>,
   document.getElementById('root')
 );
 

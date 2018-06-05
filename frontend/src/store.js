@@ -2,12 +2,11 @@ import storage from 'redux-persist/es/storage';
 import apiMiddleware  from './helpers/middleware';
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { applyMiddleware, createStore } from 'redux';
-import { createEpicMiddleware } from 'redux-observable'
 import { createFilter } from 'redux-persist-transform-filter';
 import { persistReducer, persistStore } from 'redux-persist';
 import { routerMiddleware } from 'react-router-redux';
 import loggerMiddleware from 'redux-logger'
-import rootReducer, { rootEpic } from './reducers';
+import rootReducer from './reducers';
 import thunkMiddleware from 'redux-thunk';
 
 export default history => {
@@ -17,7 +16,7 @@ export default history => {
       routerMiddleware(history),
       loggerMiddleware,
       thunkMiddleware,
-      createEpicMiddleware(rootEpic),
+      // createEpicMiddleware(rootEpic),
     ]
     const persistedFilter = createFilter(
         'auth', ['access', 'refresh']
@@ -34,7 +33,7 @@ export default history => {
     )
 
     const store = createStore(
-        reducer, composeWithDevTools(
+        reducer, {}, composeWithDevTools(
         applyMiddleware(...middleware)
     ))
 

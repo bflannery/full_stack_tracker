@@ -1,45 +1,63 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Alert, Button, Jumbotron, Form } from 'reactstrap'
 
+import FormDropdown from './FormDropdown'
 import TextInput from './TextInput'
 
-const WorkoutForm = (
+
+const WORKOUT_TYPES = [
+  'Other',
+  'Atomic',
+  'CrossFit',
+  'Run'
+]
+
+const INTENSITY_TYPES = [
+  'HIIT',
+  'Strength',
+  'Endurance'
+]
+
+const WorkoutForm = ({
   errors,
-) => (
+  editWorkout = () => {},
+  saveNewWorkout = () => {}
+}) => (
   <Jumbotron className="container">
-    <Form onSubmit={(e)=> { console.log(e.target.value) } }>
+    <Form onSubmit={(e)=> {
+      e.preventDefault()
+      saveNewWorkout()
+    }}>
       <h1> Add New Workout </h1>
-      {errors.non_field_errors && (
-        <Alert color="danger">
-          {errors.non_field_errors}
-        </Alert>
-      )}
-      <TextInput
-        name="type"
+      {/*{errors.non_field_errors && (*/}
+        {/*<Alert color="danger">*/}
+          {/*{errors.non_field_errors}*/}
+        {/*</Alert>*/}
+      {/*)}*/}
+      <FormDropdown
         label="Type"
-        error={errors.type}
-        onChange={(e)=> { console.log(e.target.value) } }
+        // error={(!errors.type) ? null : errors.type}
+        options={WORKOUT_TYPES}
       />
-      <TextInput
-        name="intensity"
+      <FormDropdown
         label="Intensity"
-        error={errors.intensity}
-        type="password"
-        onChange={(e)=> { console.log(e.target.value) } }
+        // error={(!errors.intensity) ? null : errors.intensity}
+        options={INTENSITY_TYPES}
       />
       <TextInput
         name="duration"
         label="Duration"
-        error={errors.duration}
-        onChange={(e)=> { console.log(e.target.value) } }
+        // error={(!errors.duration) ? null : errors.duration}
+        onChange={(e)=> {
+          console.log(e.target.value)
+          editWorkout({duration: e.target.value})}}
       />
       <TextInput
         name="caloriesBurned"
         label="Calories Burned"
-        error={errors.calories_burned}
-        onChange={(e)=> { console.log(e.target.value) } }
+        // error={(!errors.calories_burned) ? null : errors.calories_burned}
+        onChange={(e)=> { editWorkout({caloriesBurned: e.target.value}) } }
       />
-
       <Button
         type="submit"
         color="primary"

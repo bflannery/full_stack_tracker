@@ -9,15 +9,13 @@ import { push } from 'react-router-redux'
 
 
 const INITIAL_STATE = {
-    access: undefined,
-    refresh: undefined,
-    errors: {},
+    access: '',
+    refresh: '',
+    authAPIErrors: {},
     lastUserCreated: ''
 }
 
-export const isUserRegistered = (state) => {}
 // Reducers
-
 export default (state=INITIAL_STATE, action) => {
     switch(action.type) {
       case auth.LOGIN_SUCCESS:
@@ -59,48 +57,22 @@ export default (state=INITIAL_STATE, action) => {
 
 
 // Selectors
-
-export function accessToken(state) {
-    if (state.access) {
-        return  state.access.token
-    }
+export const getAuthUI = state => state.auth
+export const accessToken = (state) => getAuthUI(state).access.token
+export const isAccessTokenExpired = state => {
+    const accessState = getAuthUI(state).access
+    return (accessState && accessState.exp)
+      ? (1000 * accessState.exp - (new Date()).getTime() < 5000)
+      : true
 }
-
-export function isAccessTokenExpired(state) {
-    if (state.access && state.access.exp) {
-        return 1000 * state.access.exp - (new Date()).getTime() < 5000
-    }
-    return true
+export const refreshToken = (state) => getAuthUI(state).refresh.token
+export const isRefreshTokenExpired = state => {
+    const refreshState = getAuthUI(state).refresh
+    return (refreshState && refreshState.exp)
+      ? (1000 * refreshState.exp - (new Date()).getTime() < 5000)
+      : true
 }
-
-export function refreshToken(state) {
-    if (state.refresh) {
-        return  state.refresh.token
-    }
-}
-
-export function isRefreshTokenExpired(state) {
-    if (state.refresh && state.refresh.exp) {
-        return 1000 * state.refresh.exp - (new Date()).getTime() < 5000
-    }
-    return true
-}
-
-export function isAuthenticated(state) {
-    return !isRefreshTokenExpired(state)
-}
-
-export function errors(state) {
-    return  state.errors
-}
-
-
-export const registerEpic = (action$, store) =>
-  action$.ofType(users.USERS_POST_SUCCESS)
-  .mapTo(push('/login'))
-
-export const epic = combineEpics(
-    registerEpic
-)
+export const isAuthenticated = state => !isRefreshTokenExpired(state)
+export const authAPIErrors = state => getAuthUI(state).authAPIErrors
 
 

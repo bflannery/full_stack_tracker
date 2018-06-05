@@ -1,24 +1,37 @@
-import { normalize } from 'normalizr'
 import * as workouts from '../actions/workouts'
-import * as schema from './schema'
 
 const INITIAL_STATE = {
-  workouts: [],
-  workoutApiError: {},
+  workoutAPIError: {},
+  newWorkout: {
+    type: 1,
+    intensity: 1,
+    duration: 0,
+    caloriesBurned: 0,
+  },
 }
 
 export default (state=INITIAL_STATE, action) => {
     switch(action.type) {
-        case workouts.WORKOUTS_GET_SUCCESS: {
-          const normalizedData = normalize(action.payload.results, schema.workoutsSchema)
-          return {
-            ...state,
-            workouts: normalizedData.entities.workouts
+      case workouts.EDIT_NEW_WORKOUT: {
+        return {
+          ...state,
+          newWorkout: {
+            ...state.newWorkout,
+            ...action.payload
           }
+        }
+      }
+      case workouts.WORKOUTS_POST_FAILURE:
+      case workouts.WORKOUTS_GET_FAILURE:
+        return {
+          ...state,
+          usersAPIError: action.payload.response
         }
         default:
             return state
     } 
 }
 
-export const workoutsArray = (state) => state
+export const getUI = (state) => state.workouts
+export const getWorkoutAPIError = (state) => getUI(state).workoutAPIError
+export const getNewWorkout = (state) => getUI(state).newWorkout

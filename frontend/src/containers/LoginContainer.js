@@ -4,20 +4,21 @@ import { Redirect, withRouter } from 'react-router-dom'
 
 import LoginForm from '../components/LoginForm'
 import { authenticate } from '../actions/auth'
-import { authErrors, isAuthenticated } from '../reducers'
+import { authAPIErrors, isAuthenticated } from '../reducers'
 
-const LoginContainer = props => (
-    (props.isAuthenticated)
-        ? <Redirect to='/' />
-        : (
-            <div className='login-page'>
-                <LoginForm {...props} />
-            </div>
-        )
-)
+
+const LoginContainer = props => {
+  return (props.isAuthenticated)
+      ? <Redirect to={{ pathname: '/', from: props.location.pathname}} />
+      : (
+        <div className='login-page'>
+          <LoginForm {...props} />
+        </div>
+      )
+}
 
 const mapStateToProps = state => ({
-    errors: authErrors(state),
+    errors: authAPIErrors(state),
     isAuthenticated: isAuthenticated(state),
 })
 

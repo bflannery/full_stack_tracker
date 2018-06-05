@@ -1,26 +1,28 @@
 import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
-import { connect} from 'react-redux'
-import * as reducers from '../reducers'
+import { Route, Redirect, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { isAuthenticated } from '../reducers/'
 
 const PrivateRouteContainer = ({
     component: Component,
-    isAuthenticated,
+    isUserAuthenticated,
     ...rest
 }) => (
-    <Route {...rest} render={props => (
-      props.isAuthenticated
-        ? <Component {...props} />
-        : (
-          <Redirect to={'/login'}
-          />
-        ))
+    <Route {...rest} render={props => {
+     return (
+        isUserAuthenticated
+          ? <Component {...props} />
+          : (
+            <Redirect to='/login'
+            />
+          ))
+    }
       }
     />
 )
 
 const mapStateToProps = state => ({
-    isAuthenticated: reducers.isAuthenticated(state)
+  isUserAuthenticated: isAuthenticated(state)
 })
 
-export default connect(mapStateToProps, null)(PrivateRouteContainer)
+export default withRouter(connect(mapStateToProps)(PrivateRouteContainer))

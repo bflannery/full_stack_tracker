@@ -11,7 +11,6 @@ export const LOGOUT = '@@auth/LOGOUT'
 
 
 export const authenticate = (username, password) => {
-    console.log({username, password})
     return {
     [RSAA]: {
     endpoint: '/api/auth/token/obtain/',
