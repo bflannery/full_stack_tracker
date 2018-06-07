@@ -1,6 +1,5 @@
 import jwtDecode from 'jwt-decode'
-import * as auth from '../actions/auth'
-import * as users from '../actions/users'
+import * as authStatic from '../static/auth'
 import { combineEpics } from 'redux-observable'
 import 'rxjs/add/operator/mapTo'
 import 'rxjs/add/operator/filter'
@@ -8,48 +7,42 @@ import 'rxjs/add/operator/do'
 import { push } from 'react-router-redux'
 
 
-const INITIAL_STATE = {
-    access: '',
-    refresh: '',
-    authAPIErrors: {},
-    lastUserCreated: ''
-}
-
 // Reducers
-export default (state=INITIAL_STATE, action) => {
+export default (state=authStatic.INITIAL_AUTH_STATE, action) => {
+    const { payload } = action
     switch(action.type) {
-      case auth.LOGIN_SUCCESS:
+      case authStatic.LOGIN_SUCCESS:
             return {
                 ...state,
                 access: {
-                    token: action.payload.access,
-                    ...jwtDecode(action.payload.access)
+                    token: payload.access,
+                    ...jwtDecode(payload.access)
                 },
                 refresh: {
-                    token: action.payload.refresh,
-                    ...jwtDecode(action.payload.refresh)
+                    token: payload.refresh,
+                    ...jwtDecode(payload.refresh)
                 },
             }
-        case auth.TOKEN_RECEIVED:
+        case authStatic.TOKEN_RECEIVED:
             return {
                 ...state,
                 access: {
-                    token: action.payload.access,
-                    ...jwtDecode(action.payload.access)
+                    token: payload.access,
+                    ...jwtDecode(payload.access)
                 },
                 isRegistered: true,
             }
-        case auth.LOGIN_FAILURE:
-        case auth.TOKEN_FAILURE:
+        case authStatic.LOGIN_FAILURE:
+        case authStatic.TOKEN_FAILURE:
             return {
-                ...INITIAL_STATE,
+                ...authStatic.INITIAL_AUTH_STATE,
                 errors:
                     action.payload.response ||
                     { 'non_field_errors': action.payload.statusText},
 
             }
-      case auth.LOGOUT:
-          return INITIAL_STATE
+      case authStatic.LOGOUT:
+          return authStatic.INITIAL_AUTH_STATE
         default:
             return state
     }
@@ -65,7 +58,9 @@ export const isAccessTokenExpired = state => {
       ? (1000 * accessState.exp - (new Date()).getTime() < 5000)
       : true
 }
-export const refreshToken = (state) => getAuthUI(state).refresh.token
+export const refreshToken = (state) => (
+  getAuthUI(state) ? false : getAuthUI(state).refresh.token
+)
 export const isRefreshTokenExpired = state => {
     const refreshState = getAuthUI(state).refresh
     return (refreshState && refreshState.exp)

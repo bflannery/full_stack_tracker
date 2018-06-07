@@ -1,19 +1,15 @@
-import * as users from '../actions/users'
+import * as usersStatic from '../static/users'
 
-const INITIAL_STATE = {
-  usersAPIError: {},
-  lastUserCreated: ''
-}
-export default (state=INITIAL_STATE, action) => {
+export default (state=usersStatic.INITIAL_USERS_STATE, action) => {
   switch(action.type) {
-    case users.USERS_POST_SUCCESS: {
+    case usersStatic.USERS_POST_SUCCESS: {
       return {
         ...state,
         lastUserCreated: action.payload.email
       }
     }
-    case users.USERS_POST_FAILURE:
-    case users.USERS_GET_FAILURE:
+    case usersStatic.USERS_POST_FAILURE:
+    case usersStatic.USERS_GET_FAILURE:
       return {
         ...state,
         usersAPIError: action.payload.response

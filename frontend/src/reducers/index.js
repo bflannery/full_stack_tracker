@@ -23,6 +23,7 @@ export const authAPIErrors = state => fromAuth.authAPIErrors(state)
 
 // From Workouts
 export const getWorkoutAPIError = state => fromWorkouts.getWorkoutAPIError(state)
+export const getNewWorkout = state => fromWorkouts.getNewWorkout(state)
 
 // From Users
 export const getUsersAPIErrors = state => fromUsers.getUsersAPIErrors(state)

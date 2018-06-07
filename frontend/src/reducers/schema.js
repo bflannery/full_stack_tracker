@@ -1,6 +1,6 @@
 import { schema, normalize } from 'normalizr';
-import * as users from '../actions/users'
-import * as workouts from '../actions/workouts'
+import * as usersStatic from '../static/users'
+import * as workoutsStatic from '../static/workouts'
 
 export const user = new schema.Entity('users', { idAttribute: 'id'});
 export const workout = new schema.Entity('workouts', { idAttribute: 'id'});
@@ -8,17 +8,17 @@ export const workout = new schema.Entity('workouts', { idAttribute: 'id'});
 export const usersSchema = [user]
 export const workoutsSchema = [workout]
 
-// TODO: As the app grows catching entities individually will become burdensome
-// Need to refactor to listen for specific caching options in API call
-
 const INITIAL_SCHEMA_STATE = {
   users: {},
   workouts: {},
 }
 
+// TODO: As the app grows catching entities individually will become burdensome
+// Need to refactor to listen for specific caching options in API call
+
 export default (state=INITIAL_SCHEMA_STATE, action) => {
   switch (action.type) {
-    case users.USERS_GET_SUCCESS: {
+    case usersStatic.USERS_GET_SUCCESS: {
       const { payload } = action
       const normalized = normalize(payload.results, usersSchema)
       return {
@@ -28,7 +28,7 @@ export default (state=INITIAL_SCHEMA_STATE, action) => {
           : normalized.entities.users
       }
     }
-    case workouts.WORKOUTS_GET_SUCCESS: {
+    case workoutsStatic.WORKOUTS_GET_SUCCESS: {
       const { payload } = action
       const normalized = normalize(payload.results, workoutsSchema)
       return {

@@ -1,18 +1,9 @@
-import * as workouts from '../actions/workouts'
+import * as workoutStatic from '../static/workouts'
 
-const INITIAL_STATE = {
-  workoutAPIError: {},
-  newWorkout: {
-    type: 1,
-    intensity: 1,
-    duration: 0,
-    caloriesBurned: 0,
-  },
-}
-
-export default (state=INITIAL_STATE, action) => {
+// Reducers
+export default (state=workoutStatic.INITIAL_WORKOUT_STATE, action) => {
     switch(action.type) {
-      case workouts.EDIT_NEW_WORKOUT: {
+      case workoutStatic.EDIT_NEW_WORKOUT: {
         return {
           ...state,
           newWorkout: {
@@ -21,8 +12,8 @@ export default (state=INITIAL_STATE, action) => {
           }
         }
       }
-      case workouts.WORKOUTS_POST_FAILURE:
-      case workouts.WORKOUTS_GET_FAILURE:
+      case workoutStatic.WORKOUTS_POST_FAILURE:
+      case workoutStatic.WORKOUTS_GET_FAILURE:
         return {
           ...state,
           usersAPIError: action.payload.response
@@ -32,6 +23,8 @@ export default (state=INITIAL_STATE, action) => {
     } 
 }
 
+
+// Selectors
 export const getUI = (state) => state.workouts
 export const getWorkoutAPIError = (state) => getUI(state).workoutAPIError
 export const getNewWorkout = (state) => getUI(state).newWorkout

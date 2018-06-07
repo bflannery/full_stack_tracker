@@ -23,9 +23,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    onSubmit: (username, password) => {
-        dispatch(authenticate(username, password))
-    }
+    onSubmit: (username, password) => dispatch(authenticate(username, password))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginContainer));

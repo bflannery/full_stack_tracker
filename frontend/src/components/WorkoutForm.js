@@ -19,9 +19,14 @@ const INTENSITY_TYPES = [
 ]
 
 const WorkoutForm = ({
+  // Selectors
   errors,
+  newWorkout,
+  workoutTypes,
+  workoutIntensity,
+  // Actions
   editWorkout = () => {},
-  saveNewWorkout = () => {}
+  saveNewWorkout = () => {},
 }) => (
   <Jumbotron className="container">
     <Form onSubmit={(e)=> {
@@ -35,21 +40,22 @@ const WorkoutForm = ({
         {/*</Alert>*/}
       {/*)}*/}
       <FormDropdown
+        selectedOption={newWorkout.type}
         label="Type"
         // error={(!errors.type) ? null : errors.type}
-        options={WORKOUT_TYPES}
+        options={workoutTypes}
       />
       <FormDropdown
         label="Intensity"
         // error={(!errors.intensity) ? null : errors.intensity}
-        options={INTENSITY_TYPES}
+        options={workoutIntensity}
       />
       <TextInput
         name="duration"
         label="Duration"
+        defaultValue='00:00:00'
         // error={(!errors.duration) ? null : errors.duration}
         onChange={(e)=> {
-          console.log(e.target.value)
           editWorkout({duration: e.target.value})}}
       />
       <TextInput
@@ -63,7 +69,7 @@ const WorkoutForm = ({
         color="primary"
         size="lg"
       >
-        Log In
+        Save Workout
       </Button>
     </Form>
   </Jumbotron>

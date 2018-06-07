@@ -10,11 +10,13 @@ import {
   saveNewWorkoutAction
 } from '../actions/workouts'
 import {
+  getNewWorkout,
+  getUsersSchema,
   getWorkoutAPIError,
   getWorkoutsSchema,
-  getUsersSchema
 } from '../reducers'
 import WorkoutForm from '../components/WorkoutForm'
+import { WORKOUT_TYPES, WORKOUT_INTENSITY } from '../static/workouts'
 
 class HomePageContainer extends Component {
   componentWillMount() {
@@ -42,9 +44,12 @@ const getUsersFromSchema = createSelector(
 )
 
 const mapStateToProps = (state) => ({
-  users: !getUsersFromSchema(state) ? [] : getUsersFromSchema(state),
-  workouts: !getWorkoutsFromSchema(state) ? [] : getUsersFromSchema(state),
+  users: getUsersFromSchema(state),
+  workouts: getWorkoutsFromSchema(state),
   errors: getWorkoutAPIError(state),
+  newWorkout: getNewWorkout(state),
+  workoutTypes: WORKOUT_TYPES,
+  workoutIntensity: WORKOUT_INTENSITY
 })
 const mapDispatchToProps = (dispatch) => ({
   getUsers: () => dispatch(apiGetUsers()),
