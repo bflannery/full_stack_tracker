@@ -35,3 +35,8 @@ export const apiGetUsers = () => ({
   }
 })
 
+// loadUsersAction
+// Can use state to grab all or specific user(s)
+export const loadUsersAction = () => (dispatch, getState) => {
+  dispatch(apiGetUsers())
+}

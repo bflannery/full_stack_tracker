@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import {
+  loadUsersAction
+} from '../actions/users'
 
 class UsersPageContainer extends Component {
+  componentWillMount() {
+    const { loadUsers } = this.props
+    loadUsers()
+  }
   render() {
     return (
       <div className="users">
@@ -12,9 +19,8 @@ class UsersPageContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({})
-const mapDispatchToProps = (dispatch) => ({})
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default connect(mapStateToProps, {
+  loadUsers: loadUsersAction
+  }
 )(UsersPageContainer);
 

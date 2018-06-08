@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect, withRouter } from 'react-router-dom'
 
 import LoginForm from '../components/LoginForm'
-import { authenticate } from '../actions/auth'
+import { loginAction } from '../actions/auth'
 import { authAPIErrors, isAuthenticated } from '../reducers'
 
 
@@ -22,8 +22,6 @@ const mapStateToProps = state => ({
     isAuthenticated: isAuthenticated(state),
 })
 
-const mapDispatchToProps = dispatch => ({
-    onSubmit: (username, password) => dispatch(authenticate(username, password))
-})
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginContainer));
+export default withRouter(connect(mapStateToProps, {
+  onSubmit: loginAction
+})(LoginContainer));

@@ -1,10 +1,7 @@
 import jwtDecode from 'jwt-decode'
 import * as authStatic from '../static/auth'
+import { apiGetUsers } from '../actions/users'
 import { combineEpics } from 'redux-observable'
-import 'rxjs/add/operator/mapTo'
-import 'rxjs/add/operator/filter'
-import 'rxjs/add/operator/do'
-import { push } from 'react-router-redux'
 
 
 // Reducers
@@ -69,5 +66,3 @@ export const isRefreshTokenExpired = state => {
 }
 export const isAuthenticated = state => !isRefreshTokenExpired(state)
 export const authAPIErrors = state => getAuthUI(state).authAPIErrors
-
-

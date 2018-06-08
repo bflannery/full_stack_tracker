@@ -29,6 +29,14 @@ export const refreshAccessToken = (token) => ({
     }
 })
 
+// loginAction
+// Call to log a user in
+export const loginAction = (username, password) => (dispatch, getState) => {
+  dispatch(authenticate(username, password))
+}
+
 export const logoutAction = () => ({
   type: authStatic.LOGOUT
 })
+
+

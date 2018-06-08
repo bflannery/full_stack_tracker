@@ -48,3 +48,9 @@ export const saveNewWorkoutAction = () => (dispatch, getState) => {
   })
   )
 }
+
+// loadWorkoutsAction
+// Can use state to grab all or specific workout(s)
+export const loadWorkoutsAction = () => (dispatch, getState) => {
+  dispatch(apiGetWorkouts())
+}
