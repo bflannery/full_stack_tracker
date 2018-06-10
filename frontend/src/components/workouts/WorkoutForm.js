@@ -1,22 +1,9 @@
 import React from 'react'
 import { Alert, Button, Jumbotron, Form } from 'reactstrap'
+import { convertMinutesToSeconds } from '../../helpers/utils/time'
+import FormDropdown from '../common/FormDropdown'
+import TextInput from '../common/TextInput'
 
-import FormDropdown from './FormDropdown'
-import TextInput from './TextInput'
-
-
-const WORKOUT_TYPES = [
-  'Other',
-  'Atomic',
-  'CrossFit',
-  'Run'
-]
-
-const INTENSITY_TYPES = [
-  'HIIT',
-  'Strength',
-  'Endurance'
-]
 
 const WorkoutForm = ({
   // Selectors
@@ -28,7 +15,7 @@ const WorkoutForm = ({
   editWorkout = () => {},
   saveNewWorkout = () => {},
 }) => (
-  <Jumbotron className="container">
+  <Jumbotron className="form-container">
     <Form onSubmit={(e)=> {
       e.preventDefault()
       saveNewWorkout()
@@ -56,13 +43,17 @@ const WorkoutForm = ({
         defaultValue='00:00:00'
         // error={(!errors.duration) ? null : errors.duration}
         onChange={(e)=> {
-          editWorkout({duration: e.target.value})}}
+          const durationInSeconds = convertMinutesToSeconds(e.target.value)
+          editWorkout({duration: durationInSeconds})}}
       />
       <TextInput
-        name="caloriesBurned"
+        name="calories_burned"
         label="Calories Burned"
         // error={(!errors.calories_burned) ? null : errors.calories_burned}
-        onChange={(e)=> { editWorkout({caloriesBurned: e.target.value}) } }
+        defaultValue={0}
+        onChange={(e)=> {
+          editWorkout({ calories_burned: e.target.value })
+        }}
       />
       <Button
         type="submit"

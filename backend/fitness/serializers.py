@@ -8,7 +8,7 @@ class WorkoutSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Workout
-        fields = ('id', 'owner',
+        fields = ('id', 'created_at', 'owner',
                   'type', 'intensity', 'duration', 'calories_burned',)
 
     def create(self, validated_data):

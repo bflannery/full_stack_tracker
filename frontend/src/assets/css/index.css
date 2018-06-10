@@ -1,5 +1,22 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    margin: 0;
+    list-style: none;
+}
+
+.workout-container {
+    margin: 10px 0 10px 0;
+}
+
+.workout-container ul {
+    border-bottom: 1px solid black;
 }

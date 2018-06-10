@@ -1,3 +1,4 @@
+import moment from 'moment'
 
 export const WORKOUTS_POST_REQUEST = '@@workout/WORKOUTS_POST_REQUEST';
 export const WORKOUTS_POST_SUCCESS = '@@workout/WORKOUTS_POST_SUCCESS';
@@ -13,10 +14,11 @@ export const EDIT_NEW_WORKOUT = '@@workout/EDIT_NEW_WORKOUT';
 export const INITIAL_WORKOUT_STATE = {
   workoutAPIError: {},
   newWorkout: {
+    created_at: moment().format('MM-DD-YYYY hh:mm:ss A'),
     type: 1,
     intensity: 1,
     duration: '00:00:00',
-    caloriesBurned: 0,
+    calories_burned: 0,
   },
 }
 

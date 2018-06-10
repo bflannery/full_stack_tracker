@@ -13,8 +13,8 @@ import {
   getUsersSchema,
   getWorkoutAPIError,
   getWorkoutsSchema,
-} from '../reducers'
-import WorkoutForm from '../components/WorkoutForm'
+} from '../reducers/index'
+import WorkoutForm from '../components/workouts/WorkoutForm'
 import { WORKOUT_TYPES, WORKOUT_INTENSITY } from '../static/workouts'
 
 class HomePageContainer extends Component {

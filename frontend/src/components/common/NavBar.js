@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { Button } from 'reactstrap'
-import { logoutAction } from '../actions/auth'
-import * as reducers from '../reducers'
+import { logoutAction } from '../../actions/auth'
+import * as reducers from '../../reducers/index'
 
 class NavBar extends Component {
   render() {

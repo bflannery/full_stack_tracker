@@ -4,7 +4,6 @@ import {
   withAuth
 } from '../reducers'
 import * as workoutsStatic from '../static/workouts'
-import moment from 'moment'
 
 export const apiPostWorkout = (workout) => ({
   [RSAA]: {
@@ -41,12 +40,7 @@ export const editWorkoutAction = (workoutChanges = {}) => ({
 export const saveNewWorkoutAction = () => (dispatch, getState) => {
   const state = getState()
   const newWorkout = getNewWorkout(state)
-  const durationInSeconds = moment.duration(newWorkout.duration).asSeconds()
-  dispatch(apiPostWorkout({
-    ...newWorkout,
-    duration: durationInSeconds
-  })
-  )
+  dispatch(apiPostWorkout(newWorkout))
 }
 
 // loadWorkoutsAction

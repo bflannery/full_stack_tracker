@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-import RegisterUserForm from '../components/RegisterUserForm'
+import RegisterUserForm from '../components/users/RegisterUserForm'
 import {  apiRegisterUser } from '../actions/users'
 import { authAPIErrors } from '../reducers'
 
