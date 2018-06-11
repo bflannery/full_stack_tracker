@@ -5,6 +5,8 @@ from .models import Workout
 
 class WorkoutSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
+    type = serializers.ReadOnlyField(source='type.name')
+    intensity = serializers.ReadOnlyField(source='intensity.name')
 
     class Meta:
         model = Workout

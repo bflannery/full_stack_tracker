@@ -22,8 +22,8 @@ WORKOUT_INTENSITY = (
 class Workout(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey('auth.User', related_name='workouts', on_delete=models.CASCADE)
-    type = models.CharField(max_length=1, choices=WORKOUT_TYPES, default='Other')
-    intensity = models.CharField(max_length=1, choices=WORKOUT_INTENSITY, default='Strength')
+    type = models.ForeignKey('WorkoutType', on_delete=models.CASCADE)
+    intensity = models.ForeignKey('WorkoutIntensity', on_delete=models.CASCADE)
     duration = models.IntegerField(default=0)
     calories_burned = models.IntegerField(default=0)
 
@@ -42,4 +42,23 @@ class Workout(models.Model):
         """
         return self.type
 
+
+class WorkoutType(models.Model):
+    name = models.CharField(max_length=10)
+
+    def __str__(self):
+        """
+        :return: String for representing the Model object (in Admin sit etc.)
+        """
+        return self.name
+
+
+class WorkoutIntensity(models.Model):
+    name = models.CharField(max_length=10)
+
+    def __str__(self):
+        """
+        :return: String for representing the Model object (in Admin sit etc.)
+        """
+        return self.name
 
