@@ -31,11 +31,13 @@ const WorkoutForm = ({
         label="Type"
         // error={(!errors.type) ? null : errors.type}
         options={workoutTypes}
+        editInput={editWorkout}
       />
       <FormDropdown
         label="Intensity"
         // error={(!errors.intensity) ? null : errors.intensity}
         options={workoutIntensity}
+        editInput={editWorkout}
       />
       <TextInput
         name="duration"
@@ -43,8 +45,10 @@ const WorkoutForm = ({
         defaultValue='00:00:00'
         // error={(!errors.duration) ? null : errors.duration}
         onChange={(e)=> {
-          const durationInSeconds = convertMinutesToSeconds(e.target.value)
-          editWorkout({duration: durationInSeconds})}}
+          editWorkout({
+            duration: convertMinutesToSeconds(e.target.value)}
+            )}
+        }
       />
       <TextInput
         name="calories_burned"
