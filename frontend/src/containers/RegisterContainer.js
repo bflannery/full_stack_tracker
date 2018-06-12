@@ -17,9 +17,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: (firstName, lastName, email, username, password) => {
+  onSubmit: (firstName, lastName, email, username, password) => (
     dispatch(apiRegisterUser(firstName, lastName, email, username, password))
-  },
+  ),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RegisterPageContainer));
