@@ -1,3 +1,5 @@
+/* COMMON */
+
 body {
     margin: 0;
     padding: 0;
@@ -13,6 +15,55 @@ li {
     list-style: none;
 }
 
+
+/* NAV */
+
+.auth-navbar-list {
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.auth-navbar-list .navbar-item {
+    float: left
+}
+
+.auth-navbar-list .navbar-item a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.auth-navbar-list .navbar-item a:hover {
+    background-color: #111;
+    text-decoration: none;
+    color: white;
+}
+
+
+.unauth-navbar-list {
+    list-style-type: none;
+    overflow: hidden;
+}
+.unauth-navbar-list .navbar-item {
+    float: right;
+    margin: 5px;
+
+}
+
+.unauth-navbar-list .navbar-item a {
+    display: block;
+    color: white;
+    background-color: #007bff;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 0.3rem;
+}
+
+/* WORKOUTS */
 .workout-container {
     margin: 10px 0 10px 0;
 }
@@ -20,3 +71,8 @@ li {
 .workout-container ul {
     border-bottom: 1px solid black;
 }
+
+/* USERS */
+
+
+
