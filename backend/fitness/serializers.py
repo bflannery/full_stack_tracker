@@ -1,12 +1,26 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Workout
+from .models import Workout, WorkoutType, WorkoutIntensity
+
+
+class WorkoutTypeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = WorkoutType
+        fields = ('id', 'name')
+
+
+class WorkoutIntensitySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = WorkoutIntensity
+        fields = ('id', 'name')
 
 
 class WorkoutSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
-    type = serializers.ReadOnlyField(source='type.name')
-    intensity = serializers.ReadOnlyField(source='intensity.name')
+    type = serializers.SlugRelatedField(slug_field='name', queryset=WorkoutType.objects.all())
+    intensity = serializers.SlugRelatedField(slug_field='name', queryset=WorkoutIntensity.objects.all())
 
     class Meta:
         model = Workout
@@ -71,3 +85,4 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+

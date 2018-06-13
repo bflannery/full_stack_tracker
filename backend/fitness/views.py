@@ -33,7 +33,7 @@ class WorkoutListCreateView(generics.ListCreateAPIView):
     """
     List all workouts, or create a new workout.
     """
-    queryset = Workout.objects.all()
+    queryset = Workout.objects.select_related()
     serializer_class = WorkoutSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
