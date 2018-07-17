@@ -21,6 +21,8 @@
 /frontend/yarn-debug.log*
 /frontend/yarn-error.log*
 
+/health_data/
+
 
 # Byte-compiled / optimized / DLL files
 *__pycache__/

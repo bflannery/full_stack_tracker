@@ -32,6 +32,7 @@ class WorkoutSerializer(serializers.ModelSerializer):
         :param validated_data:
         :return: Create and return a new 'Workout' instance, given the validated data.
         """
+        
         return Workout.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
