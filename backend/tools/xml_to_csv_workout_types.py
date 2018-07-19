@@ -147,7 +147,6 @@ class HealthDataExtractor(object):
                 if 'workoutActivityType' in node.attrib:
                     node.attrib['activityType'] = abbreviate(node.attrib['workoutActivityType'])
 
-
     def write_records(self):
         for node in self.nodes:
             if node.tag == 'Workout':
