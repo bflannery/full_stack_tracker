@@ -16,11 +16,11 @@ FIELDS = OrderedDict((
     ('sourceName', 's'),
     ('sourceVersion', 's'),
     ('workoutActivityType', 's'),
-    ('duration', 's'),
+    ('duration', 'n'),
     ('durationUnit', 's'),
-    ('totalDistance', 's'),
+    ('totalDistance', 'n'),
     ('totalDistanceUnit', 's'),
-    ('totalEnergyBurned', 's'),
+    ('totalEnergyBurned', 'n'),
     ('totalEnergyBurnedUnit', 's'),
     ('creationDate', 'd'),
     ('startDate', 'd'),
@@ -54,7 +54,7 @@ def format_value(value, datatype):
     if value is None:
         return ''
     elif datatype == 's':  # string
-        return '"%s"' % value.replace('\\', '\\\\').replace('"', '\\"')
+        return value
     elif datatype in ('n', 'd'):  # number or date
         return value
     else:
@@ -144,7 +144,7 @@ class HealthDataExtractor(object):
         for node in self.nodes:
             if node.tag == 'Workout':
                 if 'workoutActivityType' in node.attrib:
-                    node.attrib['activityType'] = abbreviate(node.attrib['workoutActivityType'])
+                    node.attrib['workoutActivityType'] = abbreviate(node.attrib['workoutActivityType'])
 
     def write_records(self):
         for node in self.nodes:

@@ -19,11 +19,10 @@ class WorkoutsPageContainer extends Component {
 
 const getWorkoutsFromSchema = createSelector(
   getWorkoutsSchema,
-  workouts => !workouts ? [] : values(workouts).map(workout => ({
-    ...workout,
-    created_at: formatDateTime(workout.created_at),
-    duration: convertSecondsToMinutes(workout.duration)
-  }))
+  workouts => !workouts ? [] : values(workouts).map(workout => {
+    console.log(workout)
+    return workout
+  })
 )
 
 const mapStateToProps = (state) => ({

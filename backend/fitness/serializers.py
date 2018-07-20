@@ -1,53 +1,16 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Workout, WorkoutType, WorkoutIntensity
-
-
-class WorkoutTypeSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = WorkoutType
-        fields = ('id', 'name')
-
-
-class WorkoutIntensitySerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = WorkoutIntensity
-        fields = ('id', 'name')
+from .models import Workout
 
 
 class WorkoutSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
-    type = serializers.SlugRelatedField(slug_field='name', queryset=WorkoutType.objects.all())
-    intensity = serializers.SlugRelatedField(slug_field='name', queryset=WorkoutIntensity.objects.all())
 
     class Meta:
         model = Workout
-        fields = ('id', 'created_at', 'owner',
-                  'type', 'intensity', 'duration', 'calories_burned',)
-
-    def create(self, validated_data):
-        """
-        :param validated_data:
-        :return: Create and return a new 'Workout' instance, given the validated data.
-        """
-        
-        return Workout.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        """
-        :param instance:
-        :param validated_data:
-        :return: Update and return an existing 'Workout' instance, given the validated data.
-        """
-
-        instance.type = validated_data.get('type', instance.type)
-        instance.intensity = validated_data.get('intensity', instance.intensity)
-        instance.duration = validated_data.get('duration', instance.duration)
-        instance.calories_burned = validated_data.get('calories_burned', instance.calories_burned)
-        instance.save()
-        return instance
+        fields = ('id', 'creationDate', 'sourceName', 'sourceVersion',
+                  'workoutActivityType', 'duration', 'durationUnit',
+                  'totalDistance', 'totalDistanceUnit', 'totalEnergyBurned',
+                  'totalEnergyBurnedUnit', 'creationDate', 'startDate', 'endDate')
 
 
 class UserSerializer(serializers.ModelSerializer):

@@ -5,27 +5,19 @@ from pygments import highlight
 
 # Create your models here.
 
-WORKOUT_TYPES = (
-    (1, 'Other'),
-    (2, 'Atomic'),
-    (3, 'Crossfit'),
-    (4, 'Run'),
-)
-
-WORKOUT_INTENSITY = (
-    (1, 'HIIT'),
-    (2, 'Strength'),
-    (3, 'Endurance'),
-)
-
-
 class Workout(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    owner = models.ForeignKey('auth.User', related_name='workouts', on_delete=models.CASCADE)
-    type = models.ForeignKey('WorkoutType', related_name='type', on_delete=models.CASCADE)
-    intensity = models.ForeignKey('WorkoutIntensity', related_name='intensity', on_delete=models.CASCADE)
+    sourceName = models.CharField(max_length=50)
+    sourceVersion = models.CharField(max_length=50)
+    workoutActivityType = models.CharField(max_length=50)
     duration = models.IntegerField(default=0)
-    calories_burned = models.IntegerField(default=0)
+    durationUnit = models.CharField(max_length=10)
+    totalDistance = models.IntegerField(default=0)
+    totalDistanceUnit = models.CharField(max_length=10)
+    totalEnergyBurned = models.IntegerField(default=0)
+    totalEnergyBurnedUnit = models.CharField(max_length=10)
+    creationDate = models.DateTimeField(auto_now_add=True)
+    startDate = models.DateTimeField()
+    endDate = models.DateTimeField()
 
     def save(self, *args, **kwargs):
         """
@@ -40,25 +32,4 @@ class Workout(models.Model):
         """
         :return: String for representing the Model object (in Admin sit etc.)
         """
-        return self.type
-
-
-class WorkoutType(models.Model):
-    name = models.CharField(max_length=10)
-
-    def __str__(self):
-        """
-        :return: String for representing the Model object (in Admin sit etc.)
-        """
-        return self.name
-
-
-class WorkoutIntensity(models.Model):
-    name = models.CharField(max_length=10)
-
-    def __str__(self):
-        """
-        :return: String for representing the Model object (in Admin sit etc.)
-        """
-        return self.name
-
+        return self.workoutActivityType

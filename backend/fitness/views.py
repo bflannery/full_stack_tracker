@@ -29,7 +29,7 @@ class RegistrationView(generics.CreateAPIView):
         serializer.save()
 
 
-class WorkoutListCreateView(generics.ListCreateAPIView):
+class WorkoutListView(generics.ListAPIView):
     """
     List all workouts, or create a new workout.
     """
@@ -37,11 +37,11 @@ class WorkoutListCreateView(generics.ListCreateAPIView):
     serializer_class = WorkoutSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+    # def perform_create(self, serializer):
+    #     serializer.save(owner=self.request.user)
 
 
-class WorkoutDetailView(generics.RetrieveUpdateDestroyAPIView):
+class WorkoutDetailView(generics.RetrieveDestroyAPIView):
     """
     Retrieve, update or delete a workout.
     """
@@ -49,3 +49,4 @@ class WorkoutDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = WorkoutSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly,)
+
