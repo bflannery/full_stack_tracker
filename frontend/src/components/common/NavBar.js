@@ -11,6 +11,7 @@ class NavBar extends Component {
         <li className="navbar-item"><NavLink to='/'>Home</NavLink></li>
         <li className="navbar-item"><NavLink to='/users'>Users</NavLink></li>
         <li className="navbar-item"><NavLink to='/workouts'>Workouts</NavLink></li>
+        <li className="navbar-item"><NavLink to='/workout-chart'>Workout Chart</NavLink></li>
         <li className="navbar-item" id="navbar-logout-button">
           <NavLink
             to='/'

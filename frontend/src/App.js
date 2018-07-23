@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import Home from './containers/HomePageContainer';
 import Users from './containers/UsersPageContainer';
 import Workouts from './containers/WorkoutsPageContainer';
+import WorkoutChart from './components/workouts/WorkoutChart';
 import Login from './containers/LoginContainer';
 import RegisterContainer from './containers/RegisterContainer';
 import PrivateRoute from './containers/PrivateRouteContainer';
@@ -19,6 +20,7 @@ class App extends Component {
           <PrivateRoute exact path='/' component={Home} />
           <PrivateRoute path='/users' component={Users} />
           <PrivateRoute path='/workouts' component={Workouts} />
+          <PrivateRoute path='/workout-chart' component={WorkoutChart} />
         </Switch>
       </div>
     )
