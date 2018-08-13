@@ -13,6 +13,7 @@ from collections import Counter, OrderedDict
 __version__ = '1.0'
 
 FIELDS = OrderedDict((
+    ('id', 's'),
     ('sourceName', 's'),
     ('sourceVersion', 's'),
     ('workoutActivityType', 's'),
@@ -80,15 +81,15 @@ def encode(s):
 
 class HealthDataExtractor(object):
     """
-    Extract health data from Apple Health App's XML export, export.xml.
+    Extract health data from Apple Health App's XML export, export_07172018.xml.
 
     Inputs:
-        path:      Relative or absolute path to export.xml
+        path:      Relative or absolute path to export_07172018.xml
         verbose:   Set to False for less verbose output
 
     Outputs:
         Writes a CSV file for each record type found, in the same
-        directory as the input export.xml. Reports each file written
+        directory as the input export_07172018.xml. Reports each file written
         unless verbose has been set to False.
     """
     def __init__(self, path, verbose=VERBOSE):
@@ -173,7 +174,7 @@ class HealthDataExtractor(object):
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print('USAGE: python applehealthdata.py /path/to/export.xml',
+        print('USAGE: python xml_to_csv_all_workouts.py /path/to/export_07172018.xml',
               file=sys.stderr)
         sys.exit(1)
     data = HealthDataExtractor(sys.argv[1])
