@@ -18,7 +18,7 @@ class WorkoutChart extends Component {
   createBarChart() {
     const node = this.node
 
-    let margin = { top: 10, right: 10, left: 50, bottom: 50 }
+    let margin = { top: 75, right: 10, left: 50, bottom: 50 }
 
     let width = 1000 - margin.left - margin.right
     let height = 600 - margin.top - margin.bottom
@@ -57,7 +57,7 @@ class WorkoutChart extends Component {
       .attr('y', 6)
       .attr('dy', '.71em')
       .style('text-anchor', 'end')
-      .attr('fill', '#5D6971')
+      .attr('fill', '#247BA0')
       .text('Calories')
 
     // Line path generator
@@ -81,10 +81,7 @@ class WorkoutChart extends Component {
 
       // Add line to chart
       g.append('path')
-        .attr('class', 'line')
-        .attr('fill', 'none')
-        .attr('stroke', 'grey')
-        .attr('stroke-with', '3px')
+        .attr('class', 'workouts-line')
         .attr('d', line(data))
 
       /******************************** Tooltip Code ********************************/

@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import Home from './containers/HomePageContainer'
 import Users from './containers/UsersPageContainer'
 import Workouts from './containers/WorkoutsPageContainer'
-import WorkoutChart from './components/workouts/WorkoutChart'å
+import WorkoutChart from './components/workouts/WorkoutChart'
 import Login from './containers/LoginContainer'
 import RegisterContainer from './containers/RegisterContainer'
 import PrivateRoute from './containers/PrivateRouteContainer'
