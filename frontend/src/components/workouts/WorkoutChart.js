@@ -5,9 +5,10 @@ import { values } from 'lodash'
 import { createSelector } from 'reselect'
 import { getWorkoutsSchema } from '../../reducers/index'
 
-class WorkoutChart extends Component {
+export default class WorkoutChart extends Component {
   constructor(props){
     super(props)
+    console.log(props)
     this.createBarChart = this.createBarChart.bind(this)
   }
   componentDidMount() {
@@ -145,18 +146,3 @@ class WorkoutChart extends Component {
   }
 }
 
-const getWorkoutsFromSchema = createSelector(
-  getWorkoutsSchema,
-  workouts => !workouts ? [] : values(workouts).filter(workout => (
-    workout.totalEnergyBurned < 1500)
-  )
-)
-
-const mapStateToProps = (state) => ({
-  workouts: getWorkoutsFromSchema(state)
-})
-const mapDispatchToProps = (dispatch) => ({})
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(WorkoutChart);

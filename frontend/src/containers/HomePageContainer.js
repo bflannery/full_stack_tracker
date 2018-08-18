@@ -9,13 +9,10 @@ import {
   saveNewWorkoutAction
 } from '../actions/workouts'
 import {
-  getNewWorkout,
-  getUsersSchema,
   getWorkoutAPIError,
   getWorkoutsSchema,
 } from '../reducers/index'
-import WorkoutForm from '../components/workouts/WorkoutForm'
-import { WORKOUT_TYPES, WORKOUT_INTENSITY } from '../static/workouts'
+import WorkoutChart from '../components/workouts/WorkoutChart'
 
 class HomePageContainer extends Component {
   componentWillMount() {
@@ -24,9 +21,8 @@ class HomePageContainer extends Component {
   }
   render() {
     return (
-      <div className="workout">
-        <h3> Home Page </h3>
-        <WorkoutForm {...this.props}/>
+      <div className="home-container">
+        <WorkoutChart {...this.props}/>
       </div>
     )
   }
@@ -37,18 +33,9 @@ const getWorkoutsFromSchema = createSelector(
   workouts => !workouts ? [] : values(workouts)
 )
 
-const getUsersFromSchema = createSelector(
-  getUsersSchema,
-  users => !users ? [] : values(users)
-)
-
 const mapStateToProps = (state) => ({
-  users: getUsersFromSchema(state),
   workouts: getWorkoutsFromSchema(state),
   errors: getWorkoutAPIError(state),
-  newWorkout: getNewWorkout(state),
-  workoutTypes: WORKOUT_TYPES,
-  workoutIntensity: WORKOUT_INTENSITY
 })
 
 export default withRouter(connect(mapStateToProps, {

@@ -18,49 +18,21 @@ li {
 
 /* NAV */
 
-.auth-navbar-list {
+.navbar-list {
     list-style-type: none;
     overflow: hidden;
-    background-color: #333;
 }
 
-.auth-navbar-list .navbar-item {
+.navbar-list .navbar-item {
     float: left
 }
 
-.auth-navbar-list .navbar-item a {
+.navbar-list .navbar-item a {
     display: block;
-    color: white;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-}
-
-.auth-navbar-list .navbar-item a:hover {
-    background-color: #111;
-    text-decoration: none;
-    color: white;
-}
-
-
-.unauth-navbar-list {
-    list-style-type: none;
-    overflow: hidden;
-}
-.unauth-navbar-list .navbar-item {
-    float: right;
-    margin: 5px;
-
-}
-
-.unauth-navbar-list .navbar-item a {
-    display: block;
-    color: white;
-    background-color: #007bff;
-    text-align: center;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    border-radius: 0.3rem;
 }
 
 /* WORKOUTS */
@@ -72,8 +44,30 @@ li {
     border-bottom: 1px solid black;
 }
 
-/* USERS */
 
+/* LOGIN */
+#login-form {
+    display: block;
+    margin : 25% auto;
+    text-align: center;
+}
+
+.login-input {
+    display: block;
+    margin : 0 auto;
+}
+
+/* REGISTER */
+#register-form {
+    display: block;
+    margin : 25% auto;
+    text-align: center;
+}
+
+.register-input {
+    display: block;
+    margin : 0 auto;
+}
 
 /* CHART */
 #chart-area svg {

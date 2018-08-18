@@ -19,12 +19,15 @@ module.exports = {
     'react',
   ],
   rules: {
-    'comma-dangle': ['error', 'always-multiline'],
+    'comma-dangle': [2, 'only-multiline'],
     indent: ['error', 2],
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
-    semi: ['error', 'always'],
+    semi: [2, 'never'],
     'no-unused-vars': ['warn'],
     'no-console': 0,
+    'no-debugger': 1,
+    'no-undef': 2,
+    'react/no-unused-prop-types': 0
   },
 };

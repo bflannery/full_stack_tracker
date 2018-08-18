@@ -1,15 +1,15 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { FormGroup, Input, Label } from 'reactstrap'
 
 const FormDropdown = ({
   editInput,
   error,
   label,
-  name,
   options,
   selectedOption,
 }) => (
-  <FormGroup color={error ? "danger" : ""}>
+  <FormGroup color={error ? 'danger' : ''}>
     <Label for={`${label}-input`}>{label}</Label>
     <Input
       type="select"
@@ -22,5 +22,15 @@ const FormDropdown = ({
     </Input>
   </FormGroup>
 )
+
+FormDropdown.propTypes = {
+  editInput: PropTypes.func.isRequired,
+  error: PropTypes.string,
+  label: PropTypes.string,
+  name: PropTypes.string,
+  options: PropTypes.array.isRequired,
+  selectedOption: PropTypes.string.isRequired,
+}
+
 
 export default FormDropdown

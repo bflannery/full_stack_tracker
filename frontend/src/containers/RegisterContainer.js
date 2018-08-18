@@ -7,9 +7,9 @@ import {  apiRegisterUser } from '../actions/users'
 import { authAPIErrors } from '../reducers'
 
 const RegisterPageContainer = (props) => (
-    <div className='register-page'>
-      <RegisterUserForm {...props} />
-    </div>
+  <div className='register-page'>
+    <RegisterUserForm {...props} />
+  </div>
 )
 
 const mapStateToProps = state => ({
@@ -22,4 +22,7 @@ const mapDispatchToProps = dispatch => ({
   ),
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RegisterPageContainer));
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RegisterPageContainer))

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Alert, Button, Jumbotron, Form } from 'reactstrap'
+import PropTypes from 'prop-types'
+import { Alert, Button, Container, Form } from 'reactstrap'
 import TextInput from '../common/TextInput'
-
+import { Link } from 'react-router-dom'
 
 const DEFAULT_STATE = {
   firstName: '',
@@ -11,7 +12,7 @@ const DEFAULT_STATE = {
   password: ''
 }
 
-export default class RegisterUserForm extends Component {
+class RegisterUserForm extends Component {
   state = DEFAULT_STATE
 
   handleInputChange = event => {
@@ -26,69 +27,91 @@ export default class RegisterUserForm extends Component {
 
   onSubmit = event => {
     event.preventDefault()
-    this.props.onSubmit(
+    this.props.onRegisterSubmit(
       this.state.firstName,
       this.state.lastName,
       this.state.email,
       this.state.username,
       this.state.password,
     )
-    this.state = DEFAULT_STATE
+    this.setState(DEFAULT_STATE)
   }
 
   render() {
     const errors = this.props.errors || {}
 
     return (
-      <Jumbotron className="container">
-        <Form onSubmit={this.onSubmit}>
-          <h1> Register New User </h1>
+      <Container className="col-md-12" id="register-container">
+        <Form
+          id="register-form"
+          className="col-md-6 register-form"
+          onSubmit={this.onSubmit}
+        >
           {errors.non_field_errors && (
             <Alert color="danger">
               {errors.non_field_errors}
             </Alert>
           )}
           <TextInput
-            name="firstName"
-            label="First Name"
-            error={errors.firstName}
-            onChange={this.handleInputChange}
-          />
-
-          <TextInput
-            name="lastName"
-            label="Last Name"
-            error={errors.lastName}
-            onChange={this.handleInputChange}
-          />
-          <TextInput
-            name="email"
-            label="Email"
-            error={errors.email}
-            onChange={this.handleInputChange}
-          />
-          <TextInput
+            className="col-md-8 register-input"
             name="username"
-            label="Username"
+            placeholder="Username"
             error={errors.username}
             onChange={this.handleInputChange}
           />
           <TextInput
+            className="col-md-8 register-input"
             name="password"
-            label="Password"
+            placeholder="Password"
             error={errors.password}
             type="password"
             onChange={this.handleInputChange}
           />
+
+          <TextInput
+            className="col-md-8 register-input"
+            name="firstName"
+            placeholder="First Name"
+            error={errors.firstName}
+            onChange={this.handleInputChange}
+          />
+          <TextInput
+            className="col-md-8 register-input"
+            name="lastName"
+            placeholder="Last Name"
+            error={errors.lastName}
+            onChange={this.handleInputChange}
+          />
+          <TextInput
+            className="col-md-8 register-input"
+            name="email"
+            placeholder="Email"
+            error={errors.email}
+            onChange={this.handleInputChange}
+          />
           <Button
+            id="register-submit-button"
+            className="col-md-8"
             type="submit"
-            color="primary"
+            color="info"
             size="lg"
           >
             Register
           </Button>
+          <Container id="register-to-container">
+            <span>Already Registered?
+              <Link  to='/login'> Login </Link>
+            </span>
+          </Container>
         </Form>
-      </Jumbotron>
+      </Container>
     )
   }
 }
+
+RegisterUserForm.propTypes = {
+  onRegisterSubmit: PropTypes.func.isRequired,
+  errors: PropTypes.object,
+}
+
+export default RegisterUserForm

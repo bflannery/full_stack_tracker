@@ -1,64 +1,94 @@
 import React, { Component } from 'react'
-import { Alert, Button, Jumbotron, Form } from 'reactstrap'
-
+import PropTypes from 'prop-types'
+import { Alert, Button, Container, Form } from 'reactstrap'
+import { Link } from 'react-router-dom'
 import TextInput from '../common/TextInput'
 
-export default class LoginForm extends Component {
-    state = {
-        username: '',
-        password: ''
-    }
 
-    handleInputChange = event => {
-        const target = event.target
-        const value = target.type === 'checkbox' ? target.checked : target.value
-        const name = target.name
-
-        this.setState({
-            [name]: value
-        })
-    }
-
-    onSubmit = event => {
-        event.preventDefault()
-        this.props.onSubmit(this.state.username, this.state.password)
-    }
-
-    render() {
-        const errors = this.props.errors || {}
-
-        return (
-            <Jumbotron className="container">
-                <Form onSubmit={this.onSubmit}>
-                    <h1> Log In </h1>
-                    {errors.non_field_errors && (
-                        <Alert color="danger">
-                            {errors.non_field_errors}
-                        </Alert>
-                    )}
-                    <TextInput
-                        name="username"
-                        label="Username"
-                        error={errors.username}
-                        onChange={this.handleInputChange}
-                    />
-
-                    <TextInput
-                        name="password"
-                        label="Password"
-                        error={errors.password}
-                        type="password"
-                        onChange={this.handleInputChange}
-                    />
-                    <Button
-                        type="submit"
-                        color="primary"
-                        size="lg"
-                    >
-                        Log In
-                    </Button>
-                </Form>
-            </Jumbotron>
-        )
-    }
+const DEFAULT_STATE = {
+  username: '',
+  password: ''
 }
+
+class LoginForm extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = DEFAULT_STATE
+  }
+
+  handleInputChange = e => {
+    const target = e.target
+    const value = target.type === 'checkbox' ? target.checked : target.value
+    const name = target.name
+    this.setState({
+      [name]: value
+    })
+  }
+
+  onSubmit = e => {
+    const { username, password } = this.state
+    const { onLoginSubmit } = this.props
+    e.preventDefault()
+    onLoginSubmit(username, password)
+    this.setState(DEFAULT_STATE)
+  }
+
+  render() {
+    const errors = this.props.errors || {}
+    return (
+      <Container className="col-md-12" id="login-container">
+        <Form
+          id="login-form"
+          className="col-md-6"
+          onSubmit={this.onSubmit}
+        >
+          {errors.non_field_errors && (
+            <Alert color="danger">
+              {errors.non_field_errors}
+            </Alert>
+          )}
+          <TextInput
+            icon="fas fa-user"
+            id="login-username-input"
+            className="col-md-8 login-input"
+            name="username"
+            placeholder="Username"
+            error={errors.username}
+            onChange={this.handleInputChange}
+          />
+          <TextInput
+            id="login-password-input"
+            className="col-md-8 login-input"
+            name="password"
+            error={errors.password}
+            placeholder="Password"
+            type="password"
+            onChange={this.handleInputChange}
+          />
+          <Button
+            id="login-submit-button"
+            className="col-md-8"
+            type="submit"
+            color="info"
+            size="lg"
+          >
+            Log In
+          </Button>
+          <Container id="login-to-register-container">
+            <span>Not a Member Yet?
+              <Link  to='/register'> Register </Link>
+            </span>
+          </Container>
+        </Form>
+      </Container>
+    )
+  }
+}
+
+LoginForm.propTypes = {
+  onLoginSubmit: PropTypes.func.isRequired,
+  errors: PropTypes.object,
+}
+
+export default LoginForm
