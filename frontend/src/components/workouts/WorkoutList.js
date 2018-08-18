@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Workout from './Workout'
 
 const WorkoutsList = ({
@@ -13,5 +14,9 @@ const WorkoutsList = ({
     )}
   </ul>
 )
+
+WorkoutsList.propTypes = {
+  workouts: PropTypes.array.isRequired,
+}
 
 export default WorkoutsList

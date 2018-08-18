@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import NavBar from './components/nav/NavBar'
 import { Route, Switch } from 'react-router-dom'
-import Home from './containers/HomePageContainer';
-import Users from './containers/UsersPageContainer';
-import Workouts from './containers/WorkoutsPageContainer';
-import WorkoutChart from './components/workouts/WorkoutChart';
-import Login from './containers/LoginContainer';
-import RegisterContainer from './containers/RegisterContainer';
-import PrivateRoute from './containers/PrivateRouteContainer';
+import Home from './containers/HomePageContainer'
+import Users from './containers/UsersPageContainer'
+import Workouts from './containers/WorkoutsPageContainer'
+import WorkoutChart from './components/workouts/WorkoutChart'å
+import Login from './containers/LoginContainer'
+import RegisterContainer from './containers/RegisterContainer'
+import PrivateRoute from './containers/PrivateRouteContainer'
 
 class App extends Component {
   render() {
@@ -27,4 +27,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App

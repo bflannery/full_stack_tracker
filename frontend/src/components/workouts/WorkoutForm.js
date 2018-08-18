@@ -21,11 +21,11 @@ const WorkoutForm = ({
       saveNewWorkout()
     }}>
       <h1> Add New Workout </h1>
-      {/*{errors.non_field_errors && (*/}
-        {/*<Alert color="danger">*/}
-          {/*{errors.non_field_errors}*/}
-        {/*</Alert>*/}
-      {/*)}*/}
+      {errors.non_field_errors && (
+        <Alert color="danger">
+          {errors.non_field_errors}
+        </Alert>
+      )}
       <FormDropdown
         selectedOption={newWorkout.type}
         label="Type"
@@ -34,6 +34,7 @@ const WorkoutForm = ({
         editInput={editWorkout}
       />
       <FormDropdown
+        selectedOption={newWorkout.intensity}
         label="Intensity"
         // error={(!errors.intensity) ? null : errors.intensity}
         options={workoutIntensity}
@@ -47,7 +48,7 @@ const WorkoutForm = ({
         onChange={(e)=> {
           editWorkout({
             duration: convertMinutesToSeconds(e.target.value)}
-            )}
+          )}
         }
       />
       <TextInput

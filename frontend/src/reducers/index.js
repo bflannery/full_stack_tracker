@@ -7,11 +7,11 @@ import schemaReducer, * as fromSchema from './schema'
 import usersReducer, * as fromUsers from './users'
 
 export default combineReducers({
-    auth: authReducer,
-    users: usersReducer,
-    workouts: workoutReducer,
-    schema: schemaReducer,
-    router: routerReducer,
+  auth: authReducer,
+  users: usersReducer,
+  workouts: workoutReducer,
+  schema: schemaReducer,
+  router: routerReducer,
 })
 
 export const rootEpic = combineEpics()
@@ -37,6 +37,6 @@ export const getWorkoutsSchema = state => fromSchema.getWorkoutsSchema(state)
 export const getUsersSchema = state => fromSchema.getUsersSchema(state)
 
 export const withAuth = (headers = {}) => (state) => ({
-    ...headers,
-    'Authorization': `Bearer ${accessToken(state)}`
+  ...headers,
+  'Authorization': `Bearer ${accessToken(state)}`
 })

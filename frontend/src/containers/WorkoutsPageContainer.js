@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { values } from 'lodash'
 import { createSelector } from 'reselect'
 import { getWorkoutsSchema } from '../reducers/index'
-import { convertSecondsToMinutes, formatDateTime } from '../helpers/utils/time'
 import WorkoutsList from '../components/workouts/WorkoutList'
 
 class WorkoutsPageContainer extends Component {
@@ -13,7 +12,7 @@ class WorkoutsPageContainer extends Component {
         <h3> Workouts Page </h3>
         <WorkoutsList {...this.props} />
       </div>
-    );
+    )
   }
 }
 
@@ -28,8 +27,6 @@ const getWorkoutsFromSchema = createSelector(
 const mapStateToProps = (state) => ({
   workouts: getWorkoutsFromSchema(state)
 })
-const mapDispatchToProps = (dispatch) => ({})
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(WorkoutsPageContainer);
+)(WorkoutsPageContainer)

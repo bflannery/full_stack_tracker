@@ -1,9 +1,9 @@
-import { schema, normalize } from 'normalizr';
+import { schema, normalize } from 'normalizr'
 import * as usersStatic from '../static/users'
 import * as workoutsStatic from '../static/workouts'
 
-export const user = new schema.Entity('users', { idAttribute: 'id'});
-export const workout = new schema.Entity('workouts', { idAttribute: 'id'});
+export const user = new schema.Entity('users', { idAttribute: 'id'})
+export const workout = new schema.Entity('workouts', { idAttribute: 'id'})
 
 export const usersSchema = [user]
 export const workoutsSchema = [workout]
@@ -18,28 +18,28 @@ const INITIAL_SCHEMA_STATE = {
 
 export default (state=INITIAL_SCHEMA_STATE, action) => {
   switch (action.type) {
-    case usersStatic.USERS_GET_SUCCESS: {
-      const { payload } = action
-      const normalized = normalize(payload.results, usersSchema)
-      return {
-        ...state,
-        users: !normalized.entities.users
-          ? INITIAL_SCHEMA_STATE.users
-          : normalized.entities.users
-      }
+  case usersStatic.USERS_GET_SUCCESS: {
+    const { payload } = action
+    const normalized = normalize(payload.results, usersSchema)
+    return {
+      ...state,
+      users: !normalized.entities.users
+        ? INITIAL_SCHEMA_STATE.users
+        : normalized.entities.users
     }
-    case workoutsStatic.WORKOUTS_GET_SUCCESS: {
-      const { payload } = action
-      const normalized = normalize(payload.results, workoutsSchema)
-      return {
-        ...state,
-        workouts: !normalized.entities.workouts
-          ? INITIAL_SCHEMA_STATE.workouts
-          : normalized.entities.workouts
-      }
+  }
+  case workoutsStatic.WORKOUTS_GET_SUCCESS: {
+    const { payload } = action
+    const normalized = normalize(payload.results, workoutsSchema)
+    return {
+      ...state,
+      workouts: !normalized.entities.workouts
+        ? INITIAL_SCHEMA_STATE.workouts
+        : normalized.entities.workouts
     }
-    default:
-      return state
+  }
+  default:
+    return state
   }
 }
 

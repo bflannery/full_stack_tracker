@@ -6,7 +6,7 @@ import RegisterUserForm from '../components/users/RegisterUserForm'
 import {  apiRegisterUser } from '../actions/users'
 import { authAPIErrors } from '../reducers'
 
-const RegisterPageContainer = (props) => (
+const RegisterPageContainer = props => (
   <div className='register-page'>
     <RegisterUserForm {...props} />
   </div>

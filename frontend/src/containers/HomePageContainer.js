@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { values } from 'lodash'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -27,6 +28,11 @@ class HomePageContainer extends Component {
     )
   }
 }
+
+HomePageContainer.propTypes = {
+  loadWorkouts: PropTypes.func.isRequired,
+}
+
 
 const getWorkoutsFromSchema = createSelector(
   getWorkoutsSchema,
