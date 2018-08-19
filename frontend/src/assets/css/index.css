@@ -21,7 +21,6 @@ li {
 
 
 /* NAV */
-
 .navbar-list {
     list-style-type: none;
     overflow: hidden;
@@ -33,9 +32,9 @@ li {
 
 .navbar-list .navbar-item a {
     display: block;
-    color: black;
+    color: #24A2B7;
     text-align: center;
-    padding: 14px 16px;
+    padding: 5px 10px;
     text-decoration: none;
 }
 

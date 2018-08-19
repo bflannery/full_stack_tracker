@@ -2,12 +2,14 @@ import { combineReducers } from 'redux'
 import { combineEpics } from 'redux-observable'
 import { routerReducer } from 'react-router-redux'
 import authReducer, * as fromAuth from './auth'
+import chartsReducer, * as fromCharts from './charts'
 import workoutReducer, * as fromWorkouts from './workouts'
 import schemaReducer, * as fromSchema from './schema'
 import usersReducer, * as fromUsers from './users'
 
 export default combineReducers({
   auth: authReducer,
+  charts: chartsReducer,
   users: usersReducer,
   workouts: workoutReducer,
   schema: schemaReducer,
@@ -31,6 +33,10 @@ export const getNewWorkout = state => fromWorkouts.getNewWorkout(state)
 // From Users
 export const getUsersAPIErrors = state => fromUsers.getUsersAPIErrors(state)
 export const lastUserCreated = state => fromUsers.lastUserCreated(state)
+
+// From Charts
+export const getStartDate = state => fromCharts.getStartDate(state)
+export const getEndDate = state => fromCharts.getEndDate(state)
 
 // From Schema
 export const getWorkoutsSchema = state => fromSchema.getWorkoutsSchema(state)

@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import './assets/css/index.css'
 import 'bootstrap/dist/css/bootstrap.css'
+import 'react-datepicker/dist/react-datepicker.css'
 
 import App from './App'
 import configureStore from './store'

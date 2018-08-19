@@ -10,10 +10,18 @@ import {
   saveNewWorkoutAction
 } from '../actions/workouts'
 import {
+  onStartDateChangeAction,
+  onEndDateChangeAction,
+} from '../actions/common'
+import {
   getWorkoutAPIError,
   getWorkoutsSchema,
+  getStartDate,
+  getEndDate,
 } from '../reducers/index'
 import WorkoutChart from '../components/workouts/WorkoutChart'
+import DatePicker from 'react-datepicker'
+
 
 class HomePageContainer extends Component {
   componentWillMount() {
@@ -21,8 +29,17 @@ class HomePageContainer extends Component {
     loadWorkouts()
   }
   render() {
+    const { startDate, endDate, onStartDateChange, onEndDateChange } = this.props
     return (
       <div className="home-container">
+        <DatePicker
+          selected={startDate}
+          onChange={onStartDateChange}
+        />
+        <DatePicker
+          selected={endDate}
+          onChange={onEndDateChange}
+        />
         <WorkoutChart {...this.props}/>
       </div>
     )
@@ -30,7 +47,11 @@ class HomePageContainer extends Component {
 }
 
 HomePageContainer.propTypes = {
+  onStartDateChange: PropTypes.func.isRequired,
+  onEndDateChange: PropTypes.func.isRequired,
   loadWorkouts: PropTypes.func.isRequired,
+  startDate: PropTypes.string.isRequired,
+  endDate: PropTypes.string.isRequired,
 }
 
 
@@ -42,10 +63,14 @@ const getWorkoutsFromSchema = createSelector(
 const mapStateToProps = (state) => ({
   workouts: getWorkoutsFromSchema(state),
   errors: getWorkoutAPIError(state),
+  endDate: getEndDate(state),
+  startDate: getStartDate(state)
 })
 
 export default withRouter(connect(mapStateToProps, {
   loadWorkouts: loadWorkoutsAction,
   editWorkout: editWorkoutAction,
-  saveNewWorkout: saveNewWorkoutAction
+  saveNewWorkout: saveNewWorkoutAction,
+  onStartDateChange: onStartDateChangeAction,
+  onEndDateChange: onEndDateChangeAction
 })(HomePageContainer))

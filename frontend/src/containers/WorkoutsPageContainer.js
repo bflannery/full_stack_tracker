@@ -18,10 +18,7 @@ class WorkoutsPageContainer extends Component {
 
 const getWorkoutsFromSchema = createSelector(
   getWorkoutsSchema,
-  workouts => !workouts ? [] : values(workouts).map(workout => {
-    console.log(workout)
-    return workout
-  })
+  workouts => !workouts ? [] : values(workouts)
 )
 
 const mapStateToProps = (state) => ({
