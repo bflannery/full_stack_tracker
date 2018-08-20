@@ -3,7 +3,7 @@ import {
   EDIT_END_DATE
 } from '../static/charts'
 
-  
+
 export const onEndDateChangeAction = dateChange => ({
   type: EDIT_END_DATE,
   payload: dateChange

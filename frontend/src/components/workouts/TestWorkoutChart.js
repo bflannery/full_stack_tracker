@@ -33,6 +33,9 @@ class WorkoutChart extends Component {
 
     let t = () => d3.transition().duration(1000)
 
+    let x = d3.scaleTime().range([0, width])
+    let y = d3.scaleLinear().range([height, 0])
+
     let bisectDate = d3.bisector(d => d.creationDate).left
     // let parseTime = d3.timeParse('%m - %d - %y')
 
@@ -41,21 +44,6 @@ class WorkoutChart extends Component {
       .attr('fill', 'none')
       .attr('stroke', 'grey')
       .attr('stroke-width', '1px')
-
-    // Y-Axis label
-    let yLabel = g.append('text')
-      .attr('class', 'axis-title')
-      .attr('transform', 'rotate(-90)')
-      .attr('y', 6)
-      .attr('dy', '.71em')
-      .style('text-anchor', 'end')
-      .attr('fill', '#247BA0')
-      .text('Calories')
-
-    let x = d3.scaleTime().range([0, width])
-    let y = d3.scaleLinear().range([height, 0])
-
-
 
     // Axis generators
     let xAxisCall = d3.axisBottom()
@@ -69,6 +57,16 @@ class WorkoutChart extends Component {
       .attr('transform', 'translate(0,' + height + ')')
     let yAxis = g.append('g')
       .attr('class', 'y axis')
+
+    // Y-Axis label
+    yAxis.append('text')
+      .attr('class', 'axis-title')
+      .attr('transform', 'rotate(-90)')
+      .attr('y', 6)
+      .attr('dy', '.71em')
+      .style('text-anchor', 'end')
+      .attr('fill', '#247BA0')
+      .text('Calories')
 
 
     const update = (data) => {
@@ -86,6 +84,7 @@ class WorkoutChart extends Component {
       xAxis.transition(t()).call(xAxisCall)
       yAxisCall.scale(y)
       xAxis.transition(t()).call(xAxisCall)
+
 
       d3.select('.focus').remove()
       d3.select('.overlay').remove()
@@ -138,7 +137,7 @@ class WorkoutChart extends Component {
 
 
       // Line path generator
-    const line = d3.line()
+      const line = d3.line()
         .x(d => x(d.creationDate))
         .y(d => y(d.totalEnergyBurned))
 

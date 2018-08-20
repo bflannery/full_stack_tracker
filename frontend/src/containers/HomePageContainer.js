@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { values } from 'lodash'
+import _ from 'lodash'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { createSelector } from 'reselect'
+import moment from 'moment'
 import {
   editWorkoutAction,
   loadWorkoutsAction,
@@ -50,18 +51,28 @@ HomePageContainer.propTypes = {
   onStartDateChange: PropTypes.func.isRequired,
   onEndDateChange: PropTypes.func.isRequired,
   loadWorkouts: PropTypes.func.isRequired,
-  startDate: PropTypes.string.isRequired,
-  endDate: PropTypes.string.isRequired,
+  startDate: PropTypes.object.isRequired,
+  endDate: PropTypes.object.isRequired,
 }
 
 
-const getWorkoutsFromSchema = createSelector(
+const getAllWorkoutsArray = createSelector(
   getWorkoutsSchema,
-  workouts => !workouts ? [] : values(workouts)
+  workouts => !workouts ? [] : _.values(workouts)
+)
+
+const getWorkoutsByDateRange = createSelector(
+  getAllWorkoutsArray,
+  getStartDate,
+  getEndDate,
+  (workouts, startDate, endDate) => _.filter(workouts, workout => {
+    const workoutDate = moment(workout.creationDate)
+    return workoutDate.isAfter(startDate) && workoutDate.isBefore(endDate)
+  })
 )
 
 const mapStateToProps = (state) => ({
-  workouts: getWorkoutsFromSchema(state),
+  workouts: getWorkoutsByDateRange(state),
   errors: getWorkoutAPIError(state),
   endDate: getEndDate(state),
   startDate: getStartDate(state)
