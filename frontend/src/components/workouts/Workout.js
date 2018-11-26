@@ -4,7 +4,16 @@ import PropTypes from 'prop-types'
 const Workout = ({
   workout
 }) => {
-  const { creationDate, workoutActivityType, duration, durationUnit, totalDistance, totalDistanceUnit, totalEnergyBurned, totalEnergyUnit } = workout
+  const {
+    duration,
+    durationUnit,
+    creationDate,
+    workoutActivityType,
+    totalDistance,
+    totalDistanceUnit,
+    totalEnergyBurned,
+    totalEnergyBurnedUnit
+  } = workout
   return (
     <li className="workout-container">
       <ul>
@@ -21,7 +30,7 @@ const Workout = ({
           <span> { `Total Distance: ${totalDistance} ${totalDistanceUnit}`}</span>
         </li>
         <li>
-          <span> {`Calories Burned: ${totalEnergyBurned } ${totalEnergyUnit }`}</span>
+          <span> {`Calories Burned: ${totalEnergyBurned } ${totalEnergyBurnedUnit }`}</span>
         </li>
       </ul>
     </li>
