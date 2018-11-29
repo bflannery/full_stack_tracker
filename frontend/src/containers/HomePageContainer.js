@@ -65,10 +65,22 @@ const getWorkoutsByDateRange = createSelector(
   getAllWorkoutsArray,
   getStartDate,
   getEndDate,
-  (workouts, startDate, endDate) => _.filter(workouts, workout => {
-    const workoutDate = moment(workout.creationDate)
-    return workoutDate.isAfter(startDate) && workoutDate.isBefore(endDate)
-  })
+  (workouts, startDate, endDate) => {
+    const filteredWorkouts = _.filter(workouts, workout => {
+      const workoutDate = moment(workout.creationDate)
+      return (
+        workoutDate.isAfter(startDate) && workoutDate.isBefore(endDate)
+        && workout.totalEnergyBurned < 1000
+      )
+    })
+    console.log({filteredWorkouts})
+    const formattedWorkouts = _.map(filteredWorkouts, workout => ({
+      ...workout,
+      creationDate: moment(workout.creationDate).format('MM-DD-YYYY')
+    }))
+    console.log({formattedWorkouts})
+    return formattedWorkouts
+  }
 )
 
 const mapStateToProps = (state) => ({

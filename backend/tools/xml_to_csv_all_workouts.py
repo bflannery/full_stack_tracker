@@ -13,7 +13,6 @@ from collections import Counter, OrderedDict
 __version__ = '1.0'
 
 FIELDS = OrderedDict((
-    ('id', 's'),
     ('sourceName', 's'),
     ('sourceVersion', 's'),
     ('workoutActivityType', 's'),
@@ -23,9 +22,9 @@ FIELDS = OrderedDict((
     ('totalDistanceUnit', 's'),
     ('totalEnergyBurned', 'n'),
     ('totalEnergyBurnedUnit', 's'),
-    ('creationDate', 'd'),
-    ('startDate', 'd'),
-    ('endDate', 'd'),
+    ('creationDate', 's'),
+    ('startDate', 's'),
+    ('endDate', 's'),
 ))
 
 PREFIX_RE = re.compile('^HK.*ActivityType(.+)$')

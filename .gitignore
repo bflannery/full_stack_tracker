@@ -53,7 +53,7 @@
 
 # Distribution / packaging
 /backend/.Python
-/backend/env/
+/backend/venv/
 /backend/build/
 
 # PyInstaller

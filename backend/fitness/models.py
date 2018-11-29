@@ -5,6 +5,7 @@ from pygments import highlight
 
 # Create your models here.
 
+
 class Workout(models.Model):
     sourceName = models.CharField(max_length=50)
     sourceVersion = models.CharField(max_length=50)
@@ -15,9 +16,9 @@ class Workout(models.Model):
     totalDistanceUnit = models.CharField(max_length=10)
     totalEnergyBurned = models.IntegerField(default=0)
     totalEnergyBurnedUnit = models.CharField(max_length=10)
-    creationDate = models.DateTimeField(auto_now_add=True)
-    startDate = models.DateTimeField()
-    endDate = models.DateTimeField()
+    creationDate = models.CharField(max_length=50)
+    startDate = models.CharField(max_length=50)
+    endDate = models.CharField(max_length=50)
 
     def save(self, *args, **kwargs):
         """
