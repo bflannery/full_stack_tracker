@@ -21,6 +21,7 @@ import {
   getEndDate,
 } from '../reducers/index'
 import WorkoutChart from '../components/workouts/WorkoutChart'
+import WorkoutsPerMonth from '../components/workouts/WorkoutsPerMonth'
 import DatePicker from 'react-datepicker'
 
 
@@ -42,6 +43,7 @@ class HomePageContainer extends Component {
           onChange={onEndDateChange}
         />
         <WorkoutChart {...this.props}/>
+        <WorkoutsPerMonth {...this.props} />
       </div>
     )
   }
@@ -73,18 +75,38 @@ const getWorkoutsByDateRange = createSelector(
         && workout.totalEnergyBurned < 1000
       )
     })
-    console.log({filteredWorkouts})
-    const formattedWorkouts = _.map(filteredWorkouts, workout => ({
+    return _.map(filteredWorkouts, workout => ({
       ...workout,
       creationDate: moment(workout.creationDate).format('MM-DD-YYYY')
     }))
-    console.log({formattedWorkouts})
-    return formattedWorkouts
+  }
+)
+const formatWorkoutMonth = workout => moment(workout.creationDate).format('MMMM')
+
+const getFilteredWorkoutsPerMonth = (workouts, month) => (
+  _.filter(workouts, workout => _.isEqual(formatWorkoutMonth(workout), month))
+)
+
+const getTotalCalsBurnedPerMonth = (workouts, month) => {
+  const workoutsPerMonth = getFilteredWorkoutsPerMonth(workouts, month)
+  return _.reduce(workoutsPerMonth, (curr, next) => (curr + next.totalEnergyBurned), 0)
+}
+
+const getWorkoutsPerMonth = createSelector(
+  getWorkoutsByDateRange,
+  (workouts) => {
+    const months = _.uniq(_.map(workouts, workout => formatWorkoutMonth(workout)))
+    return _.map(months, month => ({
+      label: month,
+      totalWorkouts: getFilteredWorkoutsPerMonth(workouts, month),
+      totalCalsBurned: getTotalCalsBurnedPerMonth(workouts, month)
+    }))
   }
 )
 
 const mapStateToProps = (state) => ({
   workouts: getWorkoutsByDateRange(state),
+  workoutsPerMonth: getWorkoutsPerMonth(state),
   errors: getWorkoutAPIError(state),
   endDate: getEndDate(state),
   startDate: getStartDate(state)

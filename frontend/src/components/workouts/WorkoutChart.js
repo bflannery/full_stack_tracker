@@ -1,8 +1,6 @@
-/* eslint-disable react/no-string-refs */
 import React, { Component } from 'react'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import { createSelector } from 'reselect'
 import { Line } from 'react-chartjs-2'
 
 class WorkoutChart extends Component {
@@ -10,12 +8,7 @@ class WorkoutChart extends Component {
     super(props)
   }
 
-  componentDidMount() {
-    console.log(this.refs.chart.chartInstance) // returns a Chart.js instance reference
-  }
-
   render() {
-    console.log(this.props)
     const dataLabels = _.map(this.props.workouts, workout => workout.creationDate)
     const dataValues = _.map(this.props.workouts, workout => workout.totalEnergyBurned)
     const data = {
@@ -44,9 +37,7 @@ class WorkoutChart extends Component {
         }
       ]
     }
-    return (
-      <Line ref={'chart'} data={data} />
-    )
+    return <Line data={data} />
   }
 }
 
