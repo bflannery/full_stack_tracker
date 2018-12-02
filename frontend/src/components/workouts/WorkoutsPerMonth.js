@@ -15,20 +15,20 @@ class WorkoutsPerMonthChart extends Component {
       labels: _.map(workoutsPerMonth, 'label'),
       datasets: [
         {
-          label: 'Workouts Per Month',
+          label: 'Workouts Per Month!',
           backgroundColor: 'rgba(255,99,132,0.2)',
           borderColor: 'rgba(255,99,132,1)',
           borderWidth: 1,
           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
           hoverBorderColor: 'rgba(255,99,132,1)',
-          data: _.map(workoutsPerMonth, 'totalCalsBurned'),
+          data: _.map(workoutsPerMonth, month => month.totalWorkouts.length),
         }
       ]
     }
     return (
       <Bar
         data={data}
-        width={100}
+        width={150}
         height={50}
         options={{
           maintainAspectRatio: true

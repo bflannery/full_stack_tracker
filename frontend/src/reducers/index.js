@@ -23,7 +23,6 @@ export const isAuthenticated = state => fromAuth.isAuthenticated(state)
 export const accessToken = state => fromAuth.accessToken(state)
 export const isAccessTokenExpired = state => fromAuth.isAccessTokenExpired(state)
 export const refreshToken = state => fromAuth.refreshToken(state)
-export const isRefreshTokenExpired = state => fromAuth.isRefreshTokenExpired(state)
 export const authAPIErrors = state => fromAuth.authAPIErrors(state)
 
 // From Workouts

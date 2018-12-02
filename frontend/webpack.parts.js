@@ -13,7 +13,8 @@ exports.devServer = ({ host, port } = {}) => ({
   devServer: {
     // Don't refresh if hot loading fails. Good while
     // implementing the client interface.
-    hotOnly: false,
+    // hot: true,
+    // hotOnly: false,
     // Display only errors to reduce the amount of output.
     stats: 'errors-only',
 

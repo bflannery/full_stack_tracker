@@ -25,20 +25,29 @@ export default history => {
     'auth', ['access', 'refresh']
   )
 
-  const reducer = persistReducer(
-    {
-      key: 'polls',
-      storage: storage,
-      whitelist: ['auth'],
-      transforms: [persistedFilter]
-    },
-    rootReducer
-  )
-
+  const persistConfig = {
+    key: 'polls',
+    storage: storage,
+    whitelist: ['auth'],
+    blacklist: ['router'],
+    transforms: [persistedFilter]
+  }
+  console.log({persistConfig})
+  const reducer = persistReducer(persistConfig, rootReducer)
   const store = createStore(
     reducer, {}, composeWithDevTools(
       applyMiddleware(...middleware)
     ))
+  console.log({module})
+  if (module.hot) {
+    console.log('HOT MODULE', module.hot)
+    module.hot.accept(() => {
+      // This fetch the new state of the above reducers.
+      store.replaceReducer(
+        persistReducer(persistConfig, rootReducer)
+      )
+    })
+  }
 
   persistStore(store)
   return store
