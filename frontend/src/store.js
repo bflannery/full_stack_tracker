@@ -21,9 +21,7 @@ export default history => {
     loggerMiddleware,
     // epicMiddleware,
   ]
-  const persistedFilter = createFilter(
-    'auth', ['access', 'refresh']
-  )
+  const persistedFilter = createFilter('auth', ['access', 'refresh'])
 
   const persistConfig = {
     key: 'polls',
@@ -32,15 +30,14 @@ export default history => {
     blacklist: ['router'],
     transforms: [persistedFilter]
   }
-  console.log({persistConfig})
+
   const reducer = persistReducer(persistConfig, rootReducer)
   const store = createStore(
     reducer, {}, composeWithDevTools(
       applyMiddleware(...middleware)
     ))
-  console.log({module})
+
   if (module.hot) {
-    console.log('HOT MODULE', module.hot)
     module.hot.accept(() => {
       // This fetch the new state of the above reducers.
       store.replaceReducer(

@@ -27,6 +27,13 @@ export default (state=authStatic.INITIAL_AUTH_STATE, action) => {
       isRegistered: true,
     }
   case authStatic.LOGIN_FAILURE:
+    console.log({action, statusText: action.payload.statusText})
+    const newState = {
+      ...authStatic.INITIAL_AUTH_STATE,
+      authAPIErrors: action.payload.response || { 'non_field_errors': action.payload.statusText},
+
+    }
+    console.log({newState})
   case authStatic.TOKEN_FAILURE:
     return {
       ...authStatic.INITIAL_AUTH_STATE,

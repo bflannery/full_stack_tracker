@@ -53,15 +53,15 @@ class LoginForm extends Component {
             id="login-username-input"
             className="col-md-8 login-input"
             name="username"
+            required
             placeholder="Username"
-            error={errors.username}
             onChange={this.handleInputChange}
           />
           <TextInput
             id="login-password-input"
             className="col-md-8 login-input"
             name="password"
-            error={errors.password}
+            required
             placeholder="Password"
             type="password"
             onChange={this.handleInputChange}

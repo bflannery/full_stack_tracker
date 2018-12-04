@@ -25,6 +25,7 @@ LoginContainer.propTypes = {
     pathname: PropTypes.string.isRequired,
   }).isRequired,
 }
+
 const mapStateToProps = state => ({
   errors: authAPIErrors(state),
   isAuthenticated: isAuthenticated(state),

@@ -3,7 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import { Line } from 'react-chartjs-2'
 
-class WorkoutChart extends Component {
+class CaloriesPerWorkoutChart extends Component {
   constructor(props){
     super(props)
   }
@@ -41,9 +41,9 @@ class WorkoutChart extends Component {
   }
 }
 
-WorkoutChart.propTypes = {
+CaloriesPerWorkoutChart.propTypes = {
   workouts: PropTypes.array.isRequired
 }
 
-export default WorkoutChart
+export default CaloriesPerWorkoutChart
 
