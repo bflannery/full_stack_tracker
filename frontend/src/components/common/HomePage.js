@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import DatePicker from 'react-datepicker'
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import CaloriesPerWorkoutChart from '../workouts/CaloriesPerWorkoutChart'
 import WorkoutsPerMonth from '../workouts/WorkoutsPerMonth'
 import WorkoutTypesChart from '../workouts/WorkoutTypesChart'
-import DatePicker from 'react-datepicker'
+import WorkoutTimeChart from '../workouts/WorkoutTimeChart'
 
 class HomePage extends Component {
   constructor(props) {
@@ -66,19 +67,25 @@ class HomePage extends Component {
             >
               Calories Per Workout
             </NavLink>
-          </NavItem>
-          <NavItem>
             <NavLink
               className={classnames({ active: activeTab === '2' })}
               onClick={() => { this.handleSwitchTab('2') }}
             >
-              Workouts Per Month
+              Length of Workout
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink
               className={classnames({ active: activeTab === '3' })}
               onClick={() => { this.handleSwitchTab('3') }}
+            >
+              Workouts Per Month
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: activeTab === '4' })}
+              onClick={() => { this.handleSwitchTab('4') }}
             >
               Types of Workouts
             </NavLink>
@@ -89,9 +96,12 @@ class HomePage extends Component {
             <CaloriesPerWorkoutChart {...this.props} />
           </TabPane>
           <TabPane tabId="2">
-            <WorkoutsPerMonth {...this.props} />
+            <WorkoutTimeChart {...this.props} />
           </TabPane>
           <TabPane tabId="3">
+            <WorkoutsPerMonth {...this.props} />
+          </TabPane>
+          <TabPane tabId="4">
             <WorkoutTypesChart {...this.props} />
           </TabPane>
         </TabContent>

@@ -7,6 +7,6 @@ export const EDIT_END_DATE = '@@charts/EDIT_END_DATE'
 
 export const DEFAULT_STATE = {
   chart: '',
-  startDate: moment().subtract(7, 'days'),
+  startDate: moment().subtract(1, 'years'),
   endDate: moment()
 }
