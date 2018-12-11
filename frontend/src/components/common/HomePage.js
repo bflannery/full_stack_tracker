@@ -1,121 +1,60 @@
-import React, { Component } from 'react'
+import React from 'react'
 import DatePicker from 'react-datepicker'
-import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
-import CaloriesPerWorkoutChart from '../workouts/CaloriesPerWorkoutChart'
-import WorkoutsPerMonth from '../workouts/WorkoutsPerMonth'
-import WorkoutTypesChart from '../workouts/WorkoutTypesChart'
-import WorkoutTimeChart from '../workouts/WorkoutTimeChart'
+import CaloriesPerWorkoutChart from '../charts/CaloriesPerWorkoutChart'
+import WorkoutsPerMonth from '../charts/WorkoutsPerMonthChart'
+import WorkoutTypesChart from '../charts/WorkoutTypesChart'
+import WorkoutTimeChart from '../charts/WorkoutTimeChart'
+import DashboardChart from '../charts/DashboardChart'
 
-class HomePage extends Component {
-  constructor(props) {
-    super(props)
-
-    this.handleSwitchTab = this.handleSwitchTab.bind(this)
-    this.state = {
-      activeTab: '1'
-    }
-  }
-
-  handleSwitchTab(tab) {
-    if (this.state.activeTab !== tab) {
-      this.setState({
-        activeTab: tab
-      })
-    }
-  }
-  componentWillMount() {
-    const { loadWorkouts } = this.props
-    loadWorkouts()
-  }
-
-  render() {
-    const { startDate, endDate, onStartDateChange, onEndDateChange } = this.props
-    const { activeTab } = this.state
-    return (
-      <div>
-        <Row xs={12}>
-          <Col xs={12} sm={2}>
-            <h5> Start Date </h5>
-            <DatePicker
-              selectsStart
-              startDate={startDate}
-              endDate={endDate}
-              selected={startDate}
-              onChange={onStartDateChange}
-              dropdownMode={'scroll'}
-            />
-          </Col>
-          <Col xs={12} sm={2}>
-            <h5> End Date </h5>
-            <DatePicker
-              selectsEnd
-              startDate={startDate}
-              endDate={endDate}
-              selected={endDate}
-              onChange={onEndDateChange}
-              dropdownMode={'scroll'}
-            />
-          </Col>
-        </Row>
-        <Nav tabs style={{ marginTop: '1rem' }}>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: activeTab === '1' })}
-              onClick={() => { this.handleSwitchTab('1') }}
-            >
-              Calories Per Workout
-            </NavLink>
-            <NavLink
-              className={classnames({ active: activeTab === '2' })}
-              onClick={() => { this.handleSwitchTab('2') }}
-            >
-              Length of Workout
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: activeTab === '3' })}
-              onClick={() => { this.handleSwitchTab('3') }}
-            >
-              Workouts Per Month
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: activeTab === '4' })}
-              onClick={() => { this.handleSwitchTab('4') }}
-            >
-              Types of Workouts
-            </NavLink>
-          </NavItem>
-        </Nav>
-        <TabContent activeTab={activeTab}>
-          <TabPane tabId="1">
-            <CaloriesPerWorkoutChart {...this.props} />
-          </TabPane>
-          <TabPane tabId="2">
-            <WorkoutTimeChart {...this.props} />
-          </TabPane>
-          <TabPane tabId="3">
-            <WorkoutsPerMonth {...this.props} />
-          </TabPane>
-          <TabPane tabId="4">
-            <WorkoutTypesChart {...this.props} />
-          </TabPane>
-        </TabContent>
-      </div>
-    )
-  }
-}
+const HomePage = ({
+  startDate,
+  endDate,
+  onStartDateChange,
+  onEndDateChange,
+  activeChart,
+}) => (
+  <div>
+    <Row xs={12}>
+      <Col xs={12} sm={2}>
+        <h5> Start Date </h5>
+        <DatePicker
+          selectsStart
+          startDate={startDate}
+          endDate={endDate}
+          selected={startDate}
+          onChange={onStartDateChange}
+          dropdownMode={'scroll'}
+        />
+      </Col>
+      <Col xs={12} sm={2}>
+        <h5> End Date </h5>
+        <DatePicker
+          selectsEnd
+          startDate={startDate}
+          endDate={endDate}
+          selected={endDate}
+          onChange={onEndDateChange}
+          dropdownMode={'scroll'}
+        />
+      </Col>
+    </Row>
+    {activeChart === 'dashboard' && <DashboardChart /> }
+    {activeChart === 'workoutCals' && <CaloriesPerWorkoutChart /> }
+    {activeChart === 'workoutTime' && <WorkoutsPerMonth /> }
+    {activeChart === 'workoutMonth' && <WorkoutTypesChart /> }
+    {activeChart === 'workoutTypes' && <WorkoutTimeChart /> }
+  </div>
+)
 
 HomePage.propTypes = {
+  activeChart: PropTypes.string.isRequired,
+  endDate: PropTypes.object.isRequired,
+  loadWorkouts: PropTypes.func.isRequired,
   onStartDateChange: PropTypes.func.isRequired,
   onEndDateChange: PropTypes.func.isRequired,
-  loadWorkouts: PropTypes.func.isRequired,
   startDate: PropTypes.object.isRequired,
-  endDate: PropTypes.object.isRequired,
 }
 
 export default HomePage

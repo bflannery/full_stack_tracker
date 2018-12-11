@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
+import { Nav, NavItem } from 'reactstrap'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { logoutAction } from '../../actions/auth'
@@ -22,22 +23,20 @@ class NavBar extends Component {
     const { isAuthenticated } = this.props
     return (
       (isAuthenticated && (
-        <nav>
-          <ul className="navbar-list">
-            <li className="navbar-item">
-              <NavLink to='/'>Home</NavLink>
-            </li>
-            <li className="navbar-item">
-              <NavLink to='/workouts'>Workouts</NavLink>
-            </li>
-            <li className="navbar-item" id="navbar-logout-button">
-              <NavLink
-                to='/'
-                onClick={this.handleLogout}
-              >Log Out</NavLink>
-            </li>
-          </ul>
-        </nav>
+        <Nav className="navbar-list">
+          <NavItem className="navbar-item">
+            <NavLink to='/'>Home</NavLink>
+          </NavItem>
+          <NavItem className="navbar-item">
+            <NavLink to='/workouts'>Workouts</NavLink>
+          </NavItem>
+          <NavItem className="navbar-item" id="navbar-logout-button">
+            <NavLink
+              to='/'
+              onClick={this.handleLogout}
+            >Log Out</NavLink>
+          </NavItem>
+        </Nav>
       ))
     )
   }

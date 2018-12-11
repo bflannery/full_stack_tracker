@@ -12,9 +12,10 @@ import {
   onEndDateChangeAction,
 } from '../actions/common'
 import {
-  getWorkoutAPIError,
-  getStartDate,
+  getActiveChart,
   getEndDate,
+  getStartDate,
+  getWorkoutAPIError,
 } from '../reducers/index'
 import HomePage from '../components/common/HomePage'
 import { getWorkoutsByDateRange, getWorkoutsPerMonth, getWorkoutTypes } from '../helpers/reselect/homePageSelectors'
@@ -39,6 +40,7 @@ HomePageContainer.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
+  activeChart: getActiveChart(state),
   endDate: getEndDate(state),
   errors: getWorkoutAPIError(state),
   startDate: getStartDate(state),

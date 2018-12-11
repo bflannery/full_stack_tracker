@@ -6,8 +6,8 @@ import TextInput from '../common/TextInput'
 
 
 const DEFAULT_STATE = {
-  username: '',
-  password: ''
+  username: null,
+  password: null,
 }
 
 class LoginForm extends Component {
@@ -55,6 +55,7 @@ class LoginForm extends Component {
             name="username"
             required
             placeholder="Username"
+            value={this.state.username || ''}
             onChange={this.handleInputChange}
           />
           <TextInput
@@ -64,6 +65,7 @@ class LoginForm extends Component {
             required
             placeholder="Password"
             type="password"
+            value={this.state.password || ''}
             onChange={this.handleInputChange}
           />
           <Button

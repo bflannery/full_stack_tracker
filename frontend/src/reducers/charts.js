@@ -17,6 +17,12 @@ export default (state=charts.DEFAULT_STATE, action) => {
       endDate: payload
     }
   }
+  case charts.SET_ACTIVE_CHART: {
+    return {
+      ...state,
+      activeChart: payload
+    }
+  }
   default:
     return state
   }
@@ -25,5 +31,7 @@ export default (state=charts.DEFAULT_STATE, action) => {
 
 // Selectors
 export const getUI = (state) => state.charts
+export const getActiveChart = (state) => getUI(state).activeChart
 export const getStartDate = (state) => getUI(state).startDate
 export const getEndDate = (state) => getUI(state).endDate
+

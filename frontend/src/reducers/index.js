@@ -36,6 +36,7 @@ export const lastUserCreated = state => fromUsers.lastUserCreated(state)
 // From Charts
 export const getStartDate = state => fromCharts.getStartDate(state)
 export const getEndDate = state => fromCharts.getEndDate(state)
+export const getActiveChart = state => fromCharts.getActiveChart(state)
 
 // From Schema
 export const getWorkoutsSchema = state => fromSchema.getWorkoutsSchema(state)

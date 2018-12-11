@@ -24,10 +24,11 @@ li {
 .navbar-list {
     list-style-type: none;
     overflow: hidden;
+    justify-content: flex-end;
 }
 
 .navbar-list .navbar-item {
-    float: left
+    float: right
 }
 
 .navbar-list .navbar-item a {
@@ -46,6 +47,19 @@ li {
 .workout-container ul {
     border-bottom: 1px solid black;
 }
+
+
+/* SIDEBAR NAV */
+.side-nav-item {
+    margin: 10px;
+}
+
+.active-side-nav-item {
+    border-left: .2rem solid black;
+    padding: .25rem 0 .75rem 1.5rem;
+    margin: 1rem 0 .5rem .5rem;
+}
+
 
 
 /* LOGIN */
