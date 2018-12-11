@@ -7,7 +7,7 @@ import WorkoutTimeChart from '../charts/WorkoutTimeChart'
 
 
 const DashboardChart = () => ([
-  <Row key={1} style={{ marginTop: '20px'}}>
+  <Row key={1} style={{ marginTop: '50px'}}>
     <Col xs={6}>
       <CaloriesPerWorkoutChart />
     </Col>
@@ -15,7 +15,7 @@ const DashboardChart = () => ([
       <WorkoutTimeChart />
     </Col>
   </Row>,
-  <Row key={2} style={{ marginTop: '20px'}}>
+  <Row key={2} style={{ marginTop: '50px'}}>
     <Col xs={6}>
       <WorkoutsPerMonth />
     </Col>

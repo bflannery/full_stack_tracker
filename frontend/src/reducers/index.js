@@ -42,6 +42,8 @@ export const getActiveChart = state => fromCharts.getActiveChart(state)
 export const getWorkoutsSchema = state => fromSchema.getWorkoutsSchema(state)
 export const getUsersSchema = state => fromSchema.getUsersSchema(state)
 
+
+export const getCurrentRoute = state => state.router.location.pathname
 export const withAuth = (headers = {}) => (state) => ({
   ...headers,
   'Authorization': `Bearer ${accessToken(state)}`

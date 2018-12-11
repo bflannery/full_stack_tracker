@@ -5,7 +5,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { setActiveChartAction } from '../../actions/common'
-import { getActiveChart } from '../../reducers/index'
+import { getActiveChart, isAuthenticated, getCurrentRoute} from '../../reducers/index'
+import { getSideBarLinksSelector } from '../../helpers/reselect/sideBarNavSelectors'
 
 const SIDE_NAV_LINKS = [
   {
@@ -46,8 +47,8 @@ class SideNavBar extends Component {
     this.props.setActiveChart(activeChart.key)
   }
   render() {
-    const { activeChart } = this.props
-    return (
+    const { activeChart, isAuthenticated } = this.props
+    return (isAuthenticated && (
       <Col xs={2}>
         <Nav vertical>
           {_.map(SIDE_NAV_LINKS, link => {
@@ -65,19 +66,25 @@ class SideNavBar extends Component {
           })}
         </Nav>
       </Col>
-    )
+    ))
   }
 }
 
 SideNavBar.propTypes = {
   activeChart: PropTypes.string.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
   setActiveChart: PropTypes.func.isRequired,
   workoutTypes: PropTypes.array.isRequired,
 }
 
+
 const mapStateToProps = (state) => ({
-  activeChart: getActiveChart(state)
+  activeChart: getActiveChart(state),
+  isAuthenticated: isAuthenticated(state),
+  route: getCurrentRoute(state),
 })
+
+
 
 export default withRouter(connect(mapStateToProps, {
   setActiveChart: setActiveChartAction,
