@@ -1,8 +1,8 @@
 import React from 'react'
 import { Alert, Button, Jumbotron, Form } from 'reactstrap'
-import { convertMinutesToSeconds } from '../../helpers/utils/time'
-import FormDropdown from '../../app/common/ui/FormDropdown'
-import TextInput from '../../app/common/ui/TextInput'
+import { convertMinutesToSeconds } from '../../../common/helpers/time'
+import FormDropdown from '../../../common/ui/FormDropdown'
+import TextInput from '../../../common/ui/TextInput'
 
 
 const WorkoutForm = ({

@@ -2,11 +2,11 @@ import React from 'react'
 import DatePicker from 'react-datepicker'
 import { Row, Col } from 'reactstrap'
 import PropTypes from 'prop-types'
-import CaloriesPerWorkoutChart from '../charts/CaloriesPerWorkoutChart'
-import WorkoutsPerMonth from '../charts/WorkoutsPerMonthChart'
-import WorkoutTypesChart from '../charts/WorkoutTypesChart'
-import WorkoutTimeChart from '../charts/WorkoutTimeChart'
-import DashboardChart from '../charts/DashboardChart'
+import CaloriesPerWorkoutChart from '../../../components/charts/CaloriesPerWorkoutChart'
+import WorkoutsPerMonth from '../../../components/charts/WorkoutsPerMonthChart'
+import WorkoutTypesChart from '../../../components/charts/WorkoutTypesChart'
+import WorkoutTimeChart from '../../../components/charts/WorkoutTimeChart'
+import DashboardChart from '../../../components/charts/DashboardChart'
 
 const HomePage = ({
   startDate,

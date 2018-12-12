@@ -3,25 +3,18 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import {
-  editWorkoutAction,
-  loadWorkoutsAction,
-  saveNewWorkoutAction
-} from '../actions/workouts'
-import {
   loadHomePageAction,
-} from '..'
-import {
   onStartDateChangeAction,
   onEndDateChangeAction,
-} from '../actions/common'
+} from '../modules/actions'
 import {
   getActiveChart,
   getEndDate,
   getStartDate,
-  getWorkoutAPIError,
-} from '../reducers/index'
-import HomePage from '../app/common/ui/HomePage'
-import { getWorkoutsByDateRange, getWorkoutsPerMonth, getWorkoutTypes } from '../helpers/reselect/homePageSelectors'
+  // getWorkoutAPIError,
+} from '../modules/selectors'
+import HomePage from '../components/HomePage'
+import { getWorkoutsByDateRange, getWorkoutsPerMonth, getWorkoutTypes } from '../modules/utilities'
 
 
 class HomePageContainer extends Component {
@@ -45,7 +38,7 @@ HomePageContainer.propTypes = {
 const mapStateToProps = (state) => ({
   activeChart: getActiveChart(state),
   endDate: getEndDate(state),
-  errors: getWorkoutAPIError(state),
+  // errors: getWorkoutAPIError(state),
   startDate: getStartDate(state),
   workouts: getWorkoutsByDateRange(state),
   workoutsPerMonth: getWorkoutsPerMonth(state),
@@ -53,9 +46,7 @@ const mapStateToProps = (state) => ({
 })
 
 export default withRouter(connect(mapStateToProps, {
-  editWorkout: editWorkoutAction,
-  loadHomePageAction: loadHomePageAction,
+  loadHomePage: loadHomePageAction,
   onStartDateChange: onStartDateChangeAction,
   onEndDateChange: onEndDateChangeAction,
-  saveNewWorkout: saveNewWorkoutAction,
 })(HomePageContainer))

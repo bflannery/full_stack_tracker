@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Alert, Button, Container, Form } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import TextInput from '../../app/common/ui/TextInput'
+import TextInput from '../../../common/ui/TextInput'
 
 
 const DEFAULT_STATE = {

@@ -1,5 +1,5 @@
 import jwtDecode from 'jwt-decode'
-import * as authStatic from '../static/auth'
+import * as authStatic from './static'
 
 // Reducers
 export default (state=authStatic.INITIAL_AUTH_STATE, action) => {
@@ -27,12 +27,11 @@ export default (state=authStatic.INITIAL_AUTH_STATE, action) => {
       isRegistered: true,
     }
   case authStatic.LOGIN_FAILURE:
-    const newState = {
+    return {
       ...authStatic.INITIAL_AUTH_STATE,
       authAPIErrors: action.payload.response || { 'non_field_errors': action.payload.statusText},
 
     }
-    console.log({newState})
   case authStatic.TOKEN_FAILURE:
     return {
       ...authStatic.INITIAL_AUTH_STATE,
@@ -45,28 +44,3 @@ export default (state=authStatic.INITIAL_AUTH_STATE, action) => {
     return state
   }
 }
-
-
-// Selectors
-export const getAuthUI = state => state.auth
-export const accessToken = (state) => getAuthUI(state).access.token
-export const refreshToken = (state) => (
-  !getAuthUI(state).refresh ? false : getAuthUI(state).refresh.token
-)
-
-export const isAccessTokenExpired = state => {
-  const accessState = getAuthUI(state).access
-  return (accessState && accessState.exp)
-    ? (1000 * accessState.exp - (new Date()).getTime() < 5000)
-    : true
-}
-
-export const isRefreshTokenExpired = state => {
-  const refreshState = getAuthUI(state).refresh
-  return (refreshState && refreshState.exp)
-    ? (1000 * refreshState.exp - (new Date()).getTime() < 5000)
-    : true
-}
-
-export const isAuthenticated = state => !isRefreshTokenExpired(state)
-export const authAPIErrors = state => getAuthUI(state).authAPIErrors

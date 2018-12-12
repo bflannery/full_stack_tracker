@@ -6,8 +6,10 @@ import chartsReducer, * as fromCharts from './charts'
 import workoutReducer, * as fromWorkouts from './workouts'
 import schemaReducer, * as fromSchema from './schema'
 import usersReducer, * as fromUsers from './users'
+import appReducer from '../app/index'
 
 export default combineReducers({
+  app: appReducer,
   auth: authReducer,
   charts: chartsReducer,
   users: usersReducer,

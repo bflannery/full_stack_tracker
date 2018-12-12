@@ -13,7 +13,7 @@ const INITIAL_SCHEMA_STATE = {
   workouts: {},
 }
 
-// TODO: As the app grows catching entities individually will become burdensome
+// TODO: As the app grows catching schema individually will become burdensome
 // Need to refactor to listen for specific caching options in API call
 
 export default (state=INITIAL_SCHEMA_STATE, action) => {
