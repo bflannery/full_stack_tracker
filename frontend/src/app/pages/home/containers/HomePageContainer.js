@@ -29,7 +29,7 @@ class HomePageContainer extends Component {
 
 HomePageContainer.propTypes = {
   endDate: PropTypes.object.isRequired,
-  loadWorkouts: PropTypes.func.isRequired,
+  loadHomePage: PropTypes.func.isRequired,
   onEndDateChange: PropTypes.func.isRequired,
   onStartDateChange: PropTypes.func.isRequired,
   startDate: PropTypes.object.isRequired,

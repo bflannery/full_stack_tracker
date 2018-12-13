@@ -51,7 +51,6 @@ const HomePage = ({
 HomePage.propTypes = {
   activeChart: PropTypes.string.isRequired,
   endDate: PropTypes.object.isRequired,
-  loadWorkouts: PropTypes.func.isRequired,
   onStartDateChange: PropTypes.func.isRequired,
   onEndDateChange: PropTypes.func.isRequired,
   startDate: PropTypes.object.isRequired,

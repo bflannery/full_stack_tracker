@@ -1,10 +1,12 @@
 import { normalize } from 'normalizr'
-import * as workoutsStatic from '../../../../static/workouts'
-import { workoutsSchema } from './static'
+import {
+  workoutsSchema,
+  WORKOUTS_GET_SUCCESS
+} from './static'
 
 export default (state={}, action) => {
   switch (action.type) {
-  case workoutsStatic.WORKOUTS_GET_SUCCESS: {
+  case WORKOUTS_GET_SUCCESS: {
     const { payload } = action
     const normalizedWorkouts = normalize(payload.results, workoutsSchema)
     return {...state, ...normalizedWorkouts }

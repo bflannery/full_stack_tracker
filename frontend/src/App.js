@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'reactstrap'
-import NavBar from './app/nav/NavBar'
-import SideNavBar from './app/nav/SideNavBar'
+import NavBar from './app/nav/components/NavBar'
+import SideNavBar from './app/nav/components/SideNavBar'
 import { Route, Switch } from 'react-router-dom'
 import Home from './app/pages/home/containers/HomePageContainer'
-import Users from './containers/UsersPageContainer'
+import Users from './app/pages/users/containers/UsersPageContainer'
 import Workouts from './app/pages/workouts/containers/WorkoutsPageContainer'
 import Login from './app/pages/login/containers/LoginContainer'
 import RegisterContainer from './app/pages/login/containers/RegisterContainer'
-import PrivateRoute from './containers/PrivateRouteContainer'
+import PrivateRoute from './app/auth/containers/PrivateRouteContainer'
 
 class App extends Component {
   render() {

@@ -1,6 +1,6 @@
 import { RSAA } from 'redux-api-middleware'
 import { withAuth } from '../auth/modules/actions'
-import * as workoutsStatic from '../../static/workouts'
+import * as workoutsStatic from '../schema/workouts/modules/static'
 
 export const apiPostWorkout = (workout) => ({
   [RSAA]: {

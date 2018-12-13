@@ -1,15 +1,20 @@
-import * as charts from './static'
+import {
+  DEFAULT_STATE,
+  EDIT_START_DATE,
+  EDIT_END_DATE,
+  SET_ACTIVE_CHART,
+} from './static'
 
-export default (state = charts.DEFAULT_STATE, action) => {
+export default (state = DEFAULT_STATE, action) => {
   const {payload} = action
   switch (action.type) {
-  case charts.EDIT_START_DATE: {
+  case EDIT_START_DATE: {
     return {...state, ...payload}
   }
-  case charts.EDIT_END_DATE: {
+  case EDIT_END_DATE: {
     return {...state, ...payload}
   }
-  case charts.SET_ACTIVE_CHART: {
+  case SET_ACTIVE_CHART: {
     return {...state, ...payload}
   }
   default:

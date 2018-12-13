@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom'
 import createHistory from 'history/createBrowserHistory'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
-import './assets/css/index.css'
+import './app/assets/css/index.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
 import App from './App'
 import configureStore from './store'
-import registerServiceWorker from './helpers/registerServiceWorker'
+import registerServiceWorker from './app/utils/registerServiceWorker'
 
 const history = createHistory()
 const store = configureStore(history)
