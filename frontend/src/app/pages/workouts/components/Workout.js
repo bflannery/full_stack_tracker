@@ -18,7 +18,7 @@ const Workout = ({
     <li className="workout-container">
       <ul>
         <li>
-          <span> {`Date Created: ${creationDate}`}</span>
+          <span> {`Workout Date: ${creationDate}`}</span>
         </li>
         <li>
           <span> {`Workout Type: ${workoutActivityType}`}</span>

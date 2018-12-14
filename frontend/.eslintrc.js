@@ -20,7 +20,6 @@ module.exports = {
   ],
   rules: {
     'comma-dangle': [2, 'only-multiline'],
-    indent: ['error', 2],
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: [2, 'never'],

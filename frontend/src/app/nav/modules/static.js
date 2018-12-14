@@ -1,4 +1,4 @@
-export const HOME_NAV_LINKS = {
+export const HOME_NAV_ITEMS = {
   route: '/',
   navItems: [
     {
@@ -28,7 +28,7 @@ export const HOME_NAV_LINKS = {
   ]
 }
 
-export const WORKOUTS_PAGE_LINKS = {
+export const WORKOUTS_PAGE_ITEMS = {
   route: '/workouts',
   navItems: [
     {
@@ -40,4 +40,4 @@ export const WORKOUTS_PAGE_LINKS = {
 }
 
 
-export const SIDE_BAR_LINKS = [HOME_NAV_LINKS, WORKOUTS_PAGE_LINKS]
+export const SIDE_BAR_ITEMS = [HOME_NAV_ITEMS, WORKOUTS_PAGE_ITEMS]

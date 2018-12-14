@@ -8,8 +8,8 @@ export default (state={}, action) => {
   switch (action.type) {
   case USERS_GET_SUCCESS: {
     const { payload } = action
-    const normalizedUsers = normalize(payload.results, usersSchema)
-    return { ...state, ...normalizedUsers}
+    const normalizedResults = normalize(payload.results, usersSchema)
+    return { ...state, ...normalizedResults.entities.users}
   }
   default:
     return state
