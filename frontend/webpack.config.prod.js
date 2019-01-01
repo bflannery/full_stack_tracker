@@ -59,5 +59,5 @@ module.exports = merge([
       },
     },
   },
-  parts.attachRevision(),
+  // parts.attachRevision(),
 ]);

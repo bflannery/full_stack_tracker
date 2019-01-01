@@ -49,8 +49,11 @@ const commonConfig = merge ([
   },
 ]);
 
-module.exports = mode => (
+module.exports = mode => {
+  console.log({mode})
+  return (
   (mode === 'production')
     ? merge(commonConfig, prodConfig, { mode })
     : merge(commonConfig, devConfig, { mode })
-);
+  )
+};

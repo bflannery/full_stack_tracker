@@ -9,7 +9,9 @@ const OptimizeCSSAssetsPlugin = require(
 );
 const cssnano = require('cssnano');
 
-exports.devServer = ({ host, port } = {}) => ({
+exports.devServer = ({ host, port } = {}) => {
+  console.log({host, port})
+  const devServer = {
   devServer: {
     // Don't refresh if hot loading fails. Good while
     // implementing the client interface.
@@ -27,14 +29,21 @@ exports.devServer = ({ host, port } = {}) => ({
     // unlike default `localhost`.
     host, // Defaults to `localhost`
     port, // Defaults to 8080
-    open: true, // Open the page in browser
+    open: false, // Open the page in browser
     historyApiFallback: true,
     overlay: true,
     proxy: {
-      '/api': 'http://localhost:8000',
+      "/api": {
+        "target": "https://localhost:8000",
+        "secure": false,
+        "changeOrigin": true
+      }
     },
   },
-});
+};
+console.log({devServer})
+return devServer
+}
 
 exports.loadHTML = ({ include, exclude, use}) => {
   return  {
